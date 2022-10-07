@@ -1,9 +1,13 @@
-﻿namespace Shop.Domain.OrderAgg;
+﻿using Common.Domain;
 
-public class OrderItem
+namespace Shop.Domain.OrderAgg;
+
+public class OrderItem : BaseEntity
 {
     public OrderItem(Guid inventoryId, int count, int price)
     {
+        PriceGuard(price);
+        CountGuard(count);  
         InventoryId = inventoryId;
         Count = count;
         Price = price;
@@ -18,13 +22,25 @@ public class OrderItem
 
     public void ChangeCount(int newCount)
     {
-        if (newCount < 1)
-            return;
+        CountGuard(newCount);
         Count = newCount;   
     }
 
     public void SetPrice(int newPrice)
     {
+        PriceGuard(newPrice);
         Price = newPrice;   
+    }
+
+    public void PriceGuard(int newPrice)
+    {
+        if (newPrice < 1)
+            throw new InvalidDomainDataException("مبلغ کالا معتبر نیست");
+    }
+
+    public void CountGuard(int count)
+    {
+        if (count < 1)
+            throw new InvalidDomainDataException();
     }
 }
