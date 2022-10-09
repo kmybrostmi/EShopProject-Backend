@@ -11,7 +11,6 @@
     <Folder Include="CommentAgg\" />
     <Folder Include="OrderAgg\Events\" />
     <Folder Include="SiteEntities\" />
-    <Folder Include="UserAgg\" />
     <Folder Include="SellerAgg\" />
     <Folder Include="RoleAgg\" />
     <Folder Include="ProductAgg\" />
