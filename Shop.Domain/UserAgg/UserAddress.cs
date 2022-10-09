@@ -1,4 +1,5 @@
 ﻿using Common.Domain;
+using Shop.Domain.OrderAgg;
 
 namespace Shop.Domain.UserAgg;
 
@@ -11,6 +12,8 @@ public class UserAddress : BaseEntity
     public UserAddress(string shire, string city, string postalCode, string postalAddress, string phoneNumber, 
         string name, string family, string nationalCode)
     {
+        Guard(shire, city, postalCode, postalAddress,
+                 phoneNumber, name, family, nationalCode);
         Shire = shire;
         City = city;
         PostalCode = postalCode;
@@ -31,6 +34,50 @@ public class UserAddress : BaseEntity
     public string Family { get; private set; }
     public string NationalCode { get; private set; }
     public bool ActiveAddress { get; private set; }
+
+    public void Edit(string shire, string city, string postalCode, string postalAddress,
+            string phoneNumber, string name, string family, string nationalCode)
+    {
+        Guard(shire, city, postalCode, postalAddress,
+                 phoneNumber, name, family, nationalCode);
+        Shire = shire;
+        City = city;
+        PostalCode = postalCode;
+        PostalAddress = postalAddress;
+        PhoneNumber = phoneNumber;
+        Name = name;
+        Family = family;
+        NationalCode = nationalCode;
+    }
+
+    public void SetActive()
+    {
+        ActiveAddress = true;
+    }
+
+    public void SetDeActive()
+    {
+        ActiveAddress = false;
+
+    }
+
+    public void Guard(string shire, string city, string postalCode, string postalAddress,
+            string phoneNumber, string name, string family, string nationalCode)
+    {
+        if (phoneNumber == null)
+            throw new NullOrEmptyDomainDataException();
+
+        NullOrEmptyDomainDataException.CheckString(shire, nameof(shire));
+        NullOrEmptyDomainDataException.CheckString(city, nameof(city));
+        NullOrEmptyDomainDataException.CheckString(postalCode, nameof(postalCode));
+        NullOrEmptyDomainDataException.CheckString(postalAddress, nameof(postalAddress));
+        NullOrEmptyDomainDataException.CheckString(name, nameof(name));
+        NullOrEmptyDomainDataException.CheckString(family, nameof(family));
+        NullOrEmptyDomainDataException.CheckString(nationalCode, nameof(nationalCode));
+
+        if (IranianNationalIdChecker.IsValid(nationalCode) == false)
+            throw new InvalidDomainDataException("کدملی نامعتبر است");
+    }
 }
 
 
