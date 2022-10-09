@@ -74,6 +74,7 @@ public class User : AggregateRoot
 
     public void SetRoles(List<UserRole> roles)
     {
+        Roles.ForEach(r => r.UserId = Id);
         Roles.Clear();
         Roles.AddRange(roles);
     }
