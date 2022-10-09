@@ -78,6 +78,10 @@ public class User : AggregateRoot
         Roles.AddRange(roles);
     }
 
+    public static User RegisterUser(string phoneNumber, string password, IUserDomainService userDomain)
+    {
+        return new User(string.Empty,string.Empty,phoneNumber,null,password,Gender.None,userDomain);
+    }
     public void Guard(string phoneNumber, string email, IUserDomainService userDomain)
     {
         NullOrEmptyDomainDataException.CheckString(phoneNumber, nameof(phoneNumber));
@@ -96,10 +100,5 @@ public class User : AggregateRoot
         if (email != Email)
             if (userDomain.IsEmailExist(email))
                 throw new InvalidDomainDataException("ایمیل تکراری است");
-    }
-
-    public static User RegisterUser(string phoneNumber, string password, IUserDomainService userDomain)
-    {
-        return new User(string.Empty,string.Empty,phoneNumber,null,password,Gender.None,userDomain);
     }
 }
