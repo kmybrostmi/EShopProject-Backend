@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Aggregates\OrderAgg\Events\" />
-    <Folder Include="Aggregates\ProductAgg\Repository\" />
   </ItemGroup>
 
   <ItemGroup>
