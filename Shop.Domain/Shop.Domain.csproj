@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CommentAgg\" />
     <Folder Include="OrderAgg\Events\" />
     <Folder Include="ProductAgg\Repository\" />
     <Folder Include="SiteEntities\" />
