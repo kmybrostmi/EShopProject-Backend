@@ -18,6 +18,7 @@ public class Comment
         UserId = userId;
         ProductId = productId;
         Text = text;
+        Status = CommentStatus.Pending;
     }
 
     public Guid UserId { get; private set; }

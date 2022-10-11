@@ -7,9 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="OrderAgg\Events\" />
-    <Folder Include="ProductAgg\Repository\" />
-    <Folder Include="SiteEntities\" />
+    <Folder Include="Aggregates\OrderAgg\Events\" />
+    <Folder Include="Aggregates\ProductAgg\Repository\" />
   </ItemGroup>
 
   <ItemGroup>
