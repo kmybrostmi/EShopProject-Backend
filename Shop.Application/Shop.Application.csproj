@@ -6,4 +6,43 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Aggregates\Categories\AddChild\" />
+    <Folder Include="Aggregates\Categories\Create\" />
+    <Folder Include="Aggregates\Categories\Edit\" />
+    <Folder Include="Aggregates\Categories\Remove\" />
+    <Folder Include="Aggregates\Comments\ChangeStatus\" />
+    <Folder Include="Aggregates\Comments\Create\" />
+    <Folder Include="Aggregates\Comments\Edit\" />
+    <Folder Include="Aggregates\Comments\Remove\" />
+    <Folder Include="Aggregates\Orders\AddItem\" />
+    <Folder Include="Aggregates\Orders\ChangeCoutItem\" />
+    <Folder Include="Aggregates\Orders\CheckOut\" />
+    <Folder Include="Aggregates\Orders\ChangeStatus\" />
+    <Folder Include="Aggregates\Orders\RemoveItem\" />
+    <Folder Include="Aggregates\Products\Create\" />
+    <Folder Include="Aggregates\Products\Edit\" />
+    <Folder Include="Aggregates\Products\AddImage\" />
+    <Folder Include="Aggregates\Products\RemoveImage\" />
+    <Folder Include="Aggregates\Roles\Create\" />
+    <Folder Include="Aggregates\Roles\Edit\" />
+    <Folder Include="Aggregates\Sellers\AddInventory\" />
+    <Folder Include="Aggregates\Sellers\EditInventory\" />
+    <Folder Include="Aggregates\Sellers\Create\" />
+    <Folder Include="Aggregates\Sellers\Edit\" />
+    <Folder Include="Aggregates\Users\AddAddress\" />
+    <Folder Include="Aggregates\Users\AddToken\" />
+    <Folder Include="Aggregates\Users\ChangePassword\" />
+    <Folder Include="Aggregates\Users\ChargeWallet\" />
+    <Folder Include="Aggregates\Users\Create\" />
+    <Folder Include="Aggregates\Users\Edit\" />
+    <Folder Include="Aggregates\Users\DeleteAddress\" />
+    <Folder Include="Aggregates\Users\EditAddress\" />
+    <Folder Include="Aggregates\Users\SetaActiveAddress\" />
+    <Folder Include="Aggregates\Users\RemoveToken\" />
+    <Folder Include="Aggregates\Users\Register\" />
+    <Folder Include="Entities\SiteEntities\Banners\" />
+    <Folder Include="Entities\SiteEntities\Sliders\" />
+  </ItemGroup>
+
 </Project>
