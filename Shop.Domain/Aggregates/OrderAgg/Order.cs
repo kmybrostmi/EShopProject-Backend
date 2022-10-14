@@ -54,10 +54,33 @@ public class Order : AggregateRoot
     public void RemoveItem(Guid oderItemId)
     {
         ChangeOrderGuard();
-        var currentItem = Items.FirstOrDefault(f=>f.Id == oderItemId);
-        if(currentItem != null)
-        Items.Remove(currentItem);
+        var currentItem = Items.FirstOrDefault(f => f.Id == oderItemId);
+        if (currentItem != null)
+            Items.Remove(currentItem);
     }
+
+    public void IncreaseItemCount(Guid itemId, int count)
+    {
+        ChangeOrderGuard();
+
+        var item = Items.FirstOrDefault(f => f.Id == itemId);
+        if (item == null)
+            throw new NullOrEmptyDomainDataException();
+
+        item.IncreaseCount(count); 
+    }
+
+    public void DecreaseItemCount(Guid itemId, int count)
+    {
+        ChangeOrderGuard();
+
+        var item = Items.FirstOrDefault(f => f.Id == itemId);
+        if (item == null)
+            throw new NullOrEmptyDomainDataException();
+
+        item.DecreaseCount(count);
+    }
+
 
     public void ChangeCountItem(Guid itemId, int newCount)
     {
