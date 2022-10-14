@@ -42,3 +42,4 @@ public class Comment : AggregateRoot
         UpdateDate = DateTime.Now;
     }
 }
+
