@@ -57,4 +57,11 @@ public class Category : AggregateRoot
             ParentId = Id
         });
     }
+
+    public void DeleteCategory(Guid categoryId,Guid parentId)
+    {
+        var deleteCategory = Childs.FirstOrDefault(c => c.Id == categoryId);
+        if (deleteCategory != null && parentId != null)
+            Childs.Remove(deleteCategory);            
+    }
 }
