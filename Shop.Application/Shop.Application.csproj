@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Aggregates\Comments\Remove\" />
-    <Folder Include="Aggregates\Orders\AddItem\" />
     <Folder Include="Aggregates\Orders\ChangeCoutItem\" />
     <Folder Include="Aggregates\Orders\CheckOut\" />
     <Folder Include="Aggregates\Orders\ChangeStatus\" />

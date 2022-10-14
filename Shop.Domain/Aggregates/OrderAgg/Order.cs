@@ -41,11 +41,19 @@ public class Order : AggregateRoot
 
     public void AddItem(OrderItem item)
     {
+        ChangeOrderGuard();
+        var oldItem = Items.FirstOrDefault(f => f.InventoryId == item.InventoryId);
+        if (oldItem != null)
+        {
+            oldItem.ChangeCount(item.Count + oldItem.Count);
+            return;
+        }
         Items.Add(item);
     }
 
     public void RemoveItem(Guid oderItemId)
     {
+        ChangeOrderGuard();
         var currentItem = Items.FirstOrDefault(f=>f.Id == oderItemId);
         if(currentItem != null)
         Items.Remove(currentItem);
@@ -53,6 +61,7 @@ public class Order : AggregateRoot
 
     public void ChangeCountItem(Guid itemId, int newCount)
     {
+        ChangeOrderGuard();
         var currentItem = Items.FirstOrDefault(f => f.Id == itemId);
         if (currentItem == null)
             throw new NullOrEmptyDomainDataException();
@@ -68,7 +77,14 @@ public class Order : AggregateRoot
 
     public void Checkout(OrderAddress orderAddress)
     {
+        ChangeOrderGuard();
         Address = orderAddress;
+    }
+
+    public void ChangeOrderGuard()
+    {
+        if (OrderStatus != OrderStatus.Pending)
+            throw new InvalidDomainDataException("امکان ویرایش این سفارش وجود ندارد");
     }
 }
 

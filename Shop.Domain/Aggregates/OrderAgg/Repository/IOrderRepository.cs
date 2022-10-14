@@ -9,4 +9,7 @@ using System.Threading.Tasks;
 namespace Shop.Domain.Aggregates.OrderAgg.Repository;
 public interface IOrderRepository : IBaseRepository<Order>
 {
+    Task<Order> GetCurrentUserOrder(Guid userId);
 }
+
+
