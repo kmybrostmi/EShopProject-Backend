@@ -9,10 +9,7 @@
   <ItemGroup>
     <Folder Include="Aggregates\Comments\Remove\" />
     <Folder Include="Aggregates\Orders\ChangeCoutItem\" />
-    <Folder Include="Aggregates\Orders\CheckOut\" />
     <Folder Include="Aggregates\Orders\ChangeStatus\" />
-    <Folder Include="Aggregates\Orders\DecreaseItemCount\" />
-    <Folder Include="Aggregates\Orders\RemoveItem\" />
     <Folder Include="Aggregates\Products\Create\" />
     <Folder Include="Aggregates\Products\Edit\" />
     <Folder Include="Aggregates\Products\AddImage\" />

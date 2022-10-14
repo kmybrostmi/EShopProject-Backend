@@ -7,7 +7,7 @@ public class IncreaseOrderItemCountCommandValidation:AbstractValidator<IncreaseO
     public IncreaseOrderItemCountCommandValidation()
     {
         RuleFor(f => f.Count)
-                .GreaterThanOrEqualTo(1).WithMessage("تعداد باید بیشتر از 0 باشد");
+                .LessThanOrEqualTo(0).WithMessage("تعداد باید بیشتر از 0 باشد");
     }
 }
 
