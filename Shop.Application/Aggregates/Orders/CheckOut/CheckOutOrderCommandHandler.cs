@@ -1,5 +1,8 @@
 ﻿using Common.Application;
+using Microsoft.AspNetCore.Http;
 using Shop.Domain.Aggregates.OrderAgg.Repository;
+using Shop.Domain.OrderAgg;
+using System.Security.AccessControl;
 
 namespace Shop.Application.Aggregates.Orders.CheckOut;
 
@@ -11,9 +14,20 @@ public class CheckOutOrderCommandHandler : IBaseCommandHandler<CheckOutOrderComm
     {
         _repository = repository;
     }
-    public Task<OperationResult> Handle(CheckOutOrderCommand request, CancellationToken cancellationToken)
+    public async Task<OperationResult> Handle(CheckOutOrderCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var currentOrder =  await _repository.GetCurrentUserOrder(request.UserId);
+        if (currentOrder == null)
+            return OperationResult.NotFound();
+
+        var address = new OrderAddress(request.Shire, request.City, request.PostalCode,
+                request.PostalAddress, request.PhoneNumber, request.Name,
+                request.Family, request.NationalCode);
+
+        currentOrder.Checkout(address);
+        await _repository.Save();
+        return OperationResult.Success();
+
     }
 }
 

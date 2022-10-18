@@ -1,4 +1,5 @@
 ﻿using Common.Application.Validation;
+using Common.Application.Validation.FluentValidations;
 using FluentValidation;
 
 namespace Shop.Application.Aggregates.Orders.CheckOut;
@@ -49,8 +50,10 @@ public class CheckOutOrderCommandValidator : AbstractValidator<CheckOutOrderComm
          .NotEmpty()
          .WithMessage(ValidationMessages.required("کد ملی"))
          .MaximumLength(10).WithMessage(" کدملی نامعتبر است")
-         .MinimumLength(10).WithMessage("کدملی نامعتبر است");
-         
+         .MinimumLength(10).WithMessage("کدملی نامعتبر است")
+         .ValidNationalId();
+
+
     }
 }
 
