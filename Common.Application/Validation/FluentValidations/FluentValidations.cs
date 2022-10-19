@@ -21,7 +21,7 @@ public static class FluentValidations
         });
     }
 
-    public static IRuleBuilderOptionsConditions<T, string> ValidNationalId<T>(this IRuleBuilder<T, string> ruleBuilder, string errorMessage = "کدملی نامعتبر است")
+    public static IRuleBuilderOptionsConditions<T, string> ValidNationalId<T>(this IRuleBuilder<T, string> ruleBuilder, string errorMessage = "کدملی معتبر نمی باشد")
     {
         return ruleBuilder.Custom((nationalCode, context) =>
         {
