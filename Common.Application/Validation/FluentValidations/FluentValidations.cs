@@ -38,18 +38,4 @@ public static class FluentValidations
 
         });
     }
-
-    public static IRuleBuilderOptionsConditions<T, TProperty> JustValidFile<T, TProperty>(this IRuleBuilder<T, TProperty> ruleBuilder, string errorMessage = "فایل نامعتبر است") where TProperty : IFormFile
-    {
-        return ruleBuilder.Custom((file, context) =>
-        {
-            if (file == null)
-                return;
-
-            if (!FileValidation.IsValidFile(file))
-            {
-                context.AddFailure(errorMessage);
-            }
-        });
-    }
 }
