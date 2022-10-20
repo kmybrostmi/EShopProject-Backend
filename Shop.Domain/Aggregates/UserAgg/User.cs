@@ -21,6 +21,7 @@ public class User : AggregateRoot
         Email = email;
         Password = password;
         Gender = gender;
+        Avatar = "Avatar.png";
     }
 
     public string Name { get; private set; }
@@ -28,10 +29,20 @@ public class User : AggregateRoot
     public string PhoneNumber { get; private set; }
     public string Email { get; private set; }
     public string Password { get; private set; }
+    public string Avatar { get; private set; }
     public Gender Gender { get; private set; }
     public List<UserAddress> Addresses { get; private set; }
     public List<UserRole> Roles { get; private set; }
     public List<UserWallet> Wallets { get; private set; }
+
+
+    public void SetAvatar(string imageName)
+    {
+        if (string.IsNullOrWhiteSpace(imageName))
+            imageName = "avatar.png";
+
+        Avatar = imageName;
+    }
 
     public void Edit(string name, string family, string phoneNumber, string email, 
         Gender gender, IUserDomainService userDomain)
@@ -103,3 +114,4 @@ public class User : AggregateRoot
                 throw new InvalidDomainDataException("ایمیل تکراری است");
     }
 }
+
