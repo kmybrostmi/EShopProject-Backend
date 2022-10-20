@@ -10,6 +10,12 @@ using System.Threading.Tasks;
 namespace Shop.Application.Aggregates.Categories.Remove;
 public class DeleteCategoryCommand : IBaseCommand
 {
+    public DeleteCategoryCommand(Guid categoryId, Guid parentId)
+    {
+        CategoryId = categoryId;
+        ParentId = parentId;
+    }
+
     public Guid CategoryId { get; set; }
     public Guid ParentId { get; set; }
 }

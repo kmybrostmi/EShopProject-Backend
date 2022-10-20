@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 namespace Shop.Application.Aggregates.Orders.RemoveItem;
 public class RemoveOrderItemCommand:IBaseCommand
 {
+    public RemoveOrderItemCommand(Guid userId, Guid orderItermId)
+    {
+        UserId = userId;
+        OrderItermId = orderItermId;
+    }
+
     public Guid UserId { get; set; }
     public Guid OrderItermId { get; set; }
 }

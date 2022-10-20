@@ -62,7 +62,7 @@ public class Product : AggregateRoot
         ImageName = imageName;
     }
 
-    public void SetImage(ProductImage image)
+    public void Addmage(ProductImage image)
     {
         image.ProductId = Id;
         Images.Add(image);
