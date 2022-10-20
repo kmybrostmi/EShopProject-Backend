@@ -1,4 +1,5 @@
 ﻿using Common.Domain;
+using Shop.Domain.Aggregates.SellerAgg.Interface;
 using Shop.Domain.OrderAgg;
 using Shop.Domain.SellerAgg.Enums;
 using System;
@@ -21,13 +22,16 @@ public class Seller : AggregateRoot
     {
 
     }
-    public Seller(Guid userId, string shopName, string nationalCode)
+    public Seller(Guid userId, string shopName, string nationalCode, ISellerDomainService domainService)
     {
         Guard(shopName, nationalCode);
         UserId = userId;
         ShopName = shopName;
         NationalCode = nationalCode;
         Inventories = new List<SellerInventory>();
+
+        if(domainService.IsValidSellerInformation(this) == false)
+            throw new InvalidDomainDataException("اطلاعات نامعتبر است");
     }
 
 
@@ -37,11 +41,16 @@ public class Seller : AggregateRoot
         LastUpdate = DateTime.Now;
     }
 
-    public void Edit(string shopName, string nationalCode)
+    public void Edit(string shopName, string nationalCode, SellerStatus sellerStatus,
+        ISellerDomainService domainService)
     {
         Guard(shopName, nationalCode);
+        if (nationalCode != NationalCode)
+            if (domainService.NationalCodeExistsInDataBase(nationalCode))
+                throw new InvalidDomainDataException("کدملی متعلق به شخص دیگری است");
         ShopName = shopName;
-        NationalCode = nationalCode;    
+        NationalCode = nationalCode;
+        Status = sellerStatus;
     }
 
     public void Guard(string shopName, string nationalCode)
@@ -78,6 +87,7 @@ public class Seller : AggregateRoot
         Inventories.Remove(inventory);
     }
 }
+
 
 
 
