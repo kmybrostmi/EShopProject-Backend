@@ -10,28 +10,29 @@ using System.Threading.Tasks;
 namespace Shop.Domain.Entities.SiteEntities;
 public class Slider : BaseEntity
 {
-    public Slider(string link, string imageName, BannerPosition position)
+    public Slider(string title,string link, string imageName)
     {
-        Guard(link, imageName);
+        Guard(title,link, imageName);
         Link = link;
         ImageName = imageName;
-        Position = position;
+        Title = title;
     }
 
     public string Link { get; private set; }
     public string ImageName { get; private set; }
-    public BannerPosition Position { get; private set; }
+    public string Title { get; private set; }
 
-    public void Edit(string link, string imageName, BannerPosition position)
+    public void Edit(string title,string link, string imageName)
     {
-        Guard(link, imageName);
+        Guard(title,link, imageName);
         Link = link;
         ImageName = imageName;
-        Position = position;
+        Title = title;
     }
 
-    public void Guard(string link, string imageName)
+    public void Guard(string title,string link, string imageName)
     {
+        NullOrEmptyDomainDataException.CheckString(title, nameof(title));
         NullOrEmptyDomainDataException.CheckString(link, nameof(link));
         NullOrEmptyDomainDataException.CheckString(imageName, nameof(imageName));
     }

@@ -21,12 +21,6 @@
     <Folder Include="Aggregates\Users\SetaActiveAddress\" />
     <Folder Include="Aggregates\Users\RemoveToken\" />
     <Folder Include="Aggregates\Users\Register\" />
-    <Folder Include="Entities\SiteEntities\Banners\Create\" />
-    <Folder Include="Entities\SiteEntities\Banners\Edit\" />
-    <Folder Include="Entities\SiteEntities\Banners\Remove\" />
-    <Folder Include="Entities\SiteEntities\Sliders\Create\" />
-    <Folder Include="Entities\SiteEntities\Sliders\Edit\" />
-    <Folder Include="Entities\SiteEntities\Sliders\Remove\" />
   </ItemGroup>
 
   <ItemGroup>

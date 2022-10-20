@@ -1,4 +1,5 @@
 ﻿using Common.Domain;
+using Shop.Domain.Entities.SiteEntities.Enums;
 using Shop.Domain.OrderAgg;
 using System;
 using System.Collections.Generic;
@@ -9,31 +10,31 @@ using System.Threading.Tasks;
 namespace Shop.Domain.Entities.SiteEntities;
 public class Banner : BaseEntity
 {
-    public Banner(string title, string link, string imageName)
+    public Banner(string link, string imageName, BannerPosition bannerPosition)
     {
-        Guard(title, link, imageName);
-        Title = title;
+        Guard(link, imageName);
         Link = link;
         ImageName = imageName;
+        BannerPosition = bannerPosition;
     }
 
-    public string Title { get; private set; }
     public string Link { get; private set; }
     public string ImageName { get; private set; }
+    public BannerPosition BannerPosition { get; private set; }
 
-    public void Edit(string title, string link, string imageName)
+    public void Edit(string link, string imageName,BannerPosition bannerPosition)
     {
-        Guard(title, link, imageName);
-        Title = title;
+        Guard(link, imageName);
         Link = link;
         ImageName = imageName;
+        BannerPosition = bannerPosition;
     }
 
 
-    public void Guard(string title, string link, string imageName)
+    public void Guard(string link, string imageName)
     {
-        NullOrEmptyDomainDataException.CheckString(Title, nameof(Title));
         NullOrEmptyDomainDataException.CheckString(Link, nameof(Link));
         NullOrEmptyDomainDataException.CheckString(ImageName, nameof(ImageName));
     }
 }
+
