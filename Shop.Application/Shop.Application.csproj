@@ -14,7 +14,6 @@
     <Folder Include="Aggregates\Users\AddToken\" />
     <Folder Include="Aggregates\Users\ChangePassword\" />
     <Folder Include="Aggregates\Users\ChargeWallet\" />
-    <Folder Include="Aggregates\Users\Create\" />
     <Folder Include="Aggregates\Users\Edit\" />
     <Folder Include="Aggregates\Users\DeleteAddress\" />
     <Folder Include="Aggregates\Users\EditAddress\" />
