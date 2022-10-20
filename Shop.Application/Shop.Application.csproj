@@ -10,8 +10,6 @@
     <Folder Include="Aggregates\Comments\Remove\" />
     <Folder Include="Aggregates\Orders\ChangeCoutItem\" />
     <Folder Include="Aggregates\Orders\ChangeStatus\" />
-    <Folder Include="Aggregates\Roles\Create\" />
-    <Folder Include="Aggregates\Roles\Edit\" />
     <Folder Include="Aggregates\Sellers\AddInventory\" />
     <Folder Include="Aggregates\Sellers\EditInventory\" />
     <Folder Include="Aggregates\Sellers\Create\" />
