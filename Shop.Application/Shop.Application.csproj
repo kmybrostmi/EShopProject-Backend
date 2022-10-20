@@ -10,7 +10,6 @@
     <Folder Include="Aggregates\Comments\Remove\" />
     <Folder Include="Aggregates\Orders\ChangeCoutItem\" />
     <Folder Include="Aggregates\Orders\ChangeStatus\" />
-    <Folder Include="Aggregates\Products\Edit\" />
     <Folder Include="Aggregates\Products\AddImage\" />
     <Folder Include="Aggregates\Products\RemoveImage\" />
     <Folder Include="Aggregates\Roles\Create\" />

@@ -56,6 +56,12 @@ public class Product : AggregateRoot
         SeoData = seoData;
     }
 
+    public void SetImageName(string imageName)
+    {
+        NullOrEmptyDomainDataException.CheckString(imageName, nameof(imageName));
+        ImageName = imageName;
+    }
+
     public void SetImage(ProductImage image)
     {
         image.ProductId = Id;
