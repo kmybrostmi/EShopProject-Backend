@@ -10,12 +10,10 @@
     <Folder Include="Aggregates\Comments\Remove\" />
     <Folder Include="Aggregates\Orders\ChangeCoutItem\" />
     <Folder Include="Aggregates\Orders\ChangeStatus\" />
-    <Folder Include="Aggregates\Users\AddAddress\" />
     <Folder Include="Aggregates\Users\AddToken\" />
     <Folder Include="Aggregates\Users\ChangePassword\" />
     <Folder Include="Aggregates\Users\ChargeWallet\" />
     <Folder Include="Aggregates\Users\DeleteAddress\" />
-    <Folder Include="Aggregates\Users\EditAddress\" />
     <Folder Include="Aggregates\Users\SetaActiveAddress\" />
     <Folder Include="Aggregates\Users\RemoveToken\" />
     <Folder Include="Aggregates\Users\Register\" />

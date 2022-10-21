@@ -59,14 +59,16 @@ public class User : AggregateRoot
         address.UserId = Id;
         Addresses.Add(address);
     }
-    public void EditAddress(UserAddress address)
+    public void EditAddress(UserAddress address, Guid addressId)
     {
-        var oldAddress = Addresses.FirstOrDefault(f => f.Id == address.Id);
+        var oldAddress = Addresses.FirstOrDefault(f => f.Id == addressId);
         if (oldAddress == null)
             throw new NullOrEmptyDomainDataException("Address Not found");
 
-        Addresses.Remove(oldAddress);
-        Addresses.Add(address);
+        //Addresses.Remove(oldAddress);
+        //Addresses.Add(address);
+        oldAddress.Edit(address.Shire, address.City, address.PostalCode, address.PostalAddress, address.PhoneNumber,
+                address.Name, address.Family, address.NationalCode);
     }
     public void DeleteAddress(Guid addressId)
     {

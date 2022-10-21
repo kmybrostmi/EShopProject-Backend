@@ -1,4 +1,5 @@
 ﻿using Common.Domain;
+using Common.Domain.ValueObjects;
 using Shop.Domain.OrderAgg;
 
 namespace Shop.Domain.UserAgg;
@@ -9,8 +10,8 @@ public class UserAddress : BaseEntity
     {
 
     }
-    public UserAddress(string shire, string city, string postalCode, string postalAddress, string phoneNumber, 
-        string name, string family, string nationalCode)
+    public UserAddress(string shire, string city, string postalCode, string postalAddress, PhoneNumber phoneNumber, 
+        string name, string family, NationalCode nationalCode)
     {
         Guard(shire, city, postalCode, postalAddress,
                  phoneNumber, name, family, nationalCode);
@@ -29,14 +30,14 @@ public class UserAddress : BaseEntity
     public string City { get; private set; }
     public string PostalCode { get; private set; }
     public string PostalAddress { get; private set; }
-    public string PhoneNumber { get; private set; }
+    public PhoneNumber PhoneNumber { get; private set; }
     public string Name { get; private set; }
     public string Family { get; private set; }
-    public string NationalCode { get; private set; }
+    public NationalCode NationalCode { get; private set; }
     public bool ActiveAddress { get; private set; }
 
     public void Edit(string shire, string city, string postalCode, string postalAddress,
-            string phoneNumber, string name, string family, string nationalCode)
+            PhoneNumber phoneNumber, string name, string family, NationalCode nationalCode)
     {
         Guard(shire, city, postalCode, postalAddress,
                  phoneNumber, name, family, nationalCode);
@@ -62,10 +63,13 @@ public class UserAddress : BaseEntity
     }
 
     public void Guard(string shire, string city, string postalCode, string postalAddress,
-            string phoneNumber, string name, string family, string nationalCode)
+            PhoneNumber phoneNumber, string name, string family, NationalCode nationalCode)
     {
         if (phoneNumber == null)
             throw new NullOrEmptyDomainDataException();
+
+        if (nationalCode == null)
+            throw new InvalidDomainDataException();
 
         NullOrEmptyDomainDataException.CheckString(shire, nameof(shire));
         NullOrEmptyDomainDataException.CheckString(city, nameof(city));
@@ -73,10 +77,6 @@ public class UserAddress : BaseEntity
         NullOrEmptyDomainDataException.CheckString(postalAddress, nameof(postalAddress));
         NullOrEmptyDomainDataException.CheckString(name, nameof(name));
         NullOrEmptyDomainDataException.CheckString(family, nameof(family));
-        NullOrEmptyDomainDataException.CheckString(nationalCode, nameof(nationalCode));
-
-        if (IranianNationalIdChecker.IsValid(nationalCode) == false)
-            throw new InvalidDomainDataException("کدملی نامعتبر است");
     }
 }
 
