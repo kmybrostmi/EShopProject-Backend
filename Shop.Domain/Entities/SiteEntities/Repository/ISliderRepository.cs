@@ -2,7 +2,7 @@
 
 
 namespace Shop.Domain.Entities.SiteEntities.Repository;
-public interface ISliderRepository : IBaseRepository<Slider>
+public interface ISliderRepository : IBaseRepository<SliderEntity>
 {
 }
 

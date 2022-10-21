@@ -6,6 +6,10 @@ namespace Shop.Domain.UserAgg;
 
 public class UserWallet : BaseEntity
 {
+    public UserWallet()
+    {
+
+    }
     public UserWallet(int price, string description, bool isFinally, WalletType type)
     {
         if (price < 500)

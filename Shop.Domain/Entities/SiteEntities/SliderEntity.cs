@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Shop.Domain.Entities.SiteEntities;
-public class Slider : BaseEntity
+public class SliderEntity : BaseEntity
 {
-    public Slider(string title,string link, string imageName)
+    public SliderEntity(string title,string link, string imageName)
     {
         Guard(title,link, imageName);
         Link = link;

@@ -12,6 +12,10 @@ using System.Threading.Tasks;
 namespace Shop.Domain.UserAgg;
 public class User : AggregateRoot
 {
+    public User()
+    {
+
+    }
     public User(string name, string family, PhoneNumber phoneNumber, string email, string password, 
         Gender gender, IUserDomainService userDomain)
     {

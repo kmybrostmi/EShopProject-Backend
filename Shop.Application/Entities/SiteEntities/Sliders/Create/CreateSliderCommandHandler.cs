@@ -20,7 +20,7 @@ internal class CreateSliderCommandHandler : IBaseCommandHandler<CreateSliderComm
     {
         var imageName = await _fileService.SaveFileAndGenerateName(request.ImageFile, Directories.BannerImages);
 
-        var slider = new Slider(request.Title,request.Link, imageName); 
+        var slider = new SliderEntity(request.Title,request.Link, imageName); 
 
         await _repository.AddAsync(slider);
         await _repository.Save();

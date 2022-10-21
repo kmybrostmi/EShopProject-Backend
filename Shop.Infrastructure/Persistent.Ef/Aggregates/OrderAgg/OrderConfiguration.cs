@@ -13,7 +13,7 @@ internal class OrderConfiguration : IEntityTypeConfiguration<Order>
         builder.ToTable("Orders", "Order");
 
         builder.HasKey(b => b.Id);
-       c
+       
 
         //One To Many
         builder.OwnsMany(b => b.Items, option =>

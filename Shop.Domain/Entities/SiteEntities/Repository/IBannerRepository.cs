@@ -6,6 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Shop.Domain.Entities.SiteEntities.Repository;
-public interface IBannerRepository : IBaseRepository<Banner>
+public interface IBannerRepository : IBaseRepository<BannerEntity>
 {
 }

@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Shop.Domain.Entities.SiteEntities;
-public class Banner : BaseEntity
+public class BannerEntity : BaseEntity
 {
-    public Banner(string link, string imageName, BannerPosition bannerPosition)
+    public BannerEntity(string link, string imageName, BannerPosition bannerPosition)
     {
         Guard(link, imageName);
         Link = link;
