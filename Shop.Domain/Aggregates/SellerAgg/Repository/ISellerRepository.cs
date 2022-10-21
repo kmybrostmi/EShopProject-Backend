@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Shop.Domain.Aggregates.SellerAgg.Repository;
 public interface ISellerRepository : IBaseRepository<Seller>
 {
-    Task<InventoryResult> GetInventoryById(Guid id);  
+    Task<InventoryResult?> GetInventoryById(Guid id);  
 }
 
 

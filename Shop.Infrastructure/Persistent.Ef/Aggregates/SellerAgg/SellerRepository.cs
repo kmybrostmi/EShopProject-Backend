@@ -1,4 +1,5 @@
-﻿using Shop.Domain.Aggregates.SellerAgg.Repository;
+﻿using Microsoft.EntityFrameworkCore;
+using Shop.Domain.Aggregates.SellerAgg.Repository;
 using Shop.Domain.SellerAgg;
 using Shop.Infrastructure.Persistent.Ef.Aggregates._Utilities;
 
@@ -9,8 +10,16 @@ internal class SellerRepository : BaseRepository<Seller>, ISellerRepository
     {
     }
 
-    public Task<InventoryResult> GetInventoryById(Guid id)
+    public async Task<InventoryResult?> GetInventoryById(Guid id)
     {
-        throw new NotImplementedException();
+        return await Context.SellerInventories.Where(r => r.Id == id)
+            .Select(i => new InventoryResult()
+            {
+                Count = i.Count,
+                Id = i.Id,
+                Price = i.Price,
+                ProductId = i.ProductId,
+                SellerId = i.SellerId
+            }).FirstOrDefaultAsync();
     }
 }
