@@ -10,23 +10,25 @@ internal class OrderConfiguration : IEntityTypeConfiguration<Order>
 
     public void Configure(EntityTypeBuilder<Order> builder)
     {
-        builder.ToTable("Orders", "order");
+        builder.ToTable("Orders", "Order");
 
         builder.HasKey(b => b.Id);
-        builder.HasIndex(b => b.UserId);
+       c
 
+        //One To Many
         builder.OwnsMany(b => b.Items, option =>
         {
-            option.ToTable("Items", "order");
+            option.ToTable("Items", "Order");
             option.HasKey(b => b.Id);
             option.HasIndex(b => b.InventoryId);
             option.HasIndex(b => b.OrderId);
         });
 
+        ///One To One
         builder.OwnsOne(b => b.Address, option =>
         {
             option.HasKey(b => b.Id);
-            option.ToTable("Addresses", "order");
+            option.ToTable("Addresses", "Order");
 
             option.Property(b => b.Shire)
                 .IsRequired().HasMaxLength(100);
@@ -50,6 +52,7 @@ internal class OrderConfiguration : IEntityTypeConfiguration<Order>
                 .IsRequired().HasMaxLength(20);
         });
 
+        //Value Object
         builder.OwnsOne(b => b.Discount, option =>
         {
             option.Property(b => b.DiscountTitle)
@@ -57,6 +60,7 @@ internal class OrderConfiguration : IEntityTypeConfiguration<Order>
                 .HasMaxLength(100);
         });
 
+        //Value Object
         builder.OwnsOne(b => b.OrderShipping, option =>
         {
             option.Property(b => b.ShippingType)
