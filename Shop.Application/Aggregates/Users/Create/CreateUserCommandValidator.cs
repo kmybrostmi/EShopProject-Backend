@@ -8,9 +8,6 @@ public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 {
 	public CreateUserCommandValidator()
 	{
-        RuleFor(r => r.PhoneNumber)
-            .ValidPhoneNumber();
-
         RuleFor(r => r.Email)
             .EmailAddress().WithMessage("ایمیل نامعتبر است");
 

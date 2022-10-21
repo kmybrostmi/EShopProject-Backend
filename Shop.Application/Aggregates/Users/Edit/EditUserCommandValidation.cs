@@ -7,9 +7,6 @@ public class EditUserCommandValidation:AbstractValidator<EditUserCommand>
 {
 	public EditUserCommandValidation()
 	{
-        RuleFor(r => r.PhoneNumber)
-            .ValidPhoneNumber();
-
         RuleFor(r => r.Email)
             .EmailAddress().WithMessage("ایمیل نامعتبر است");
 

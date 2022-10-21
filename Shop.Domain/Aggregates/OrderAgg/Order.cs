@@ -17,10 +17,10 @@ public class Order : AggregateRoot
 
     public Guid UserId { get; set; }
     public OrderStatus OrderStatus { get; private set; }
-    public DateTime Lastupdate { get; set; }
+    public DateTime LastUpdate { get; set; }
     public List<OrderItem> Items { get; private set; }
-    public OrderDiscount? Discount { get; private set; }
     public OrderAddress? Address { get; private set; }
+    public OrderDiscount? Discount { get; private set; }
     public OrderShippingMethod? OrderShipping { get; private set; }
     public int TotalPrice
     {
