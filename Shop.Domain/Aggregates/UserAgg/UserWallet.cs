@@ -14,6 +14,8 @@ public class UserWallet : BaseEntity
         Description = description;
         IsFinally = isFinally;
         Type = type;
+        if (isFinally)
+            FinallyDate = DateTime.Now;
     }
 
     public Guid UserId { get; internal set; }
