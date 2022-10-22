@@ -8,6 +8,7 @@ using Shop.Domain.Aggregates.RoleAgg.Repository;
 using Shop.Domain.Aggregates.SellerAgg.Repository;
 using Shop.Domain.Aggregates.UserAgg.Repository;
 using Shop.Domain.Entities.SiteEntities.Repository;
+using Shop.Infrastructure.Persistent.Dapper;
 using Shop.Infrastructure.Persistent.Ef.Aggregates.CategoryAgg;
 using Shop.Infrastructure.Persistent.Ef.Aggregates.CommentAgg;
 using Shop.Infrastructure.Persistent.Ef.Aggregates.OrderAgg;
@@ -21,7 +22,7 @@ using Shop.Infrastructure.Persistent.Ef.Entitiess.SiteEntitiess.Sliders;
 namespace Shop.Infrastructure;
 internal class InfrastructureBootstrapper
 {
-    public static void Init(IServiceCollection services)
+    public static void Init(IServiceCollection services, string connectionString)
     {
         services.AddTransient<ICategoryRepository, CategoryRepository>();
         services.AddTransient<IOrderRepository, OrderRepository>();
@@ -32,5 +33,11 @@ internal class InfrastructureBootstrapper
         services.AddTransient<ISliderRepository, SliderRepository>();
         services.AddTransient<IUserRepository, UserRepository>();
         services.AddTransient<ICommentRepository, CommentRepository>();
+
+        services.AddTransient(_ => new DapperContext(connectionString));
+        services.AddDbContext<ShopDbContext>(option =>
+        {
+            option.UseSqlServer(connectionString);
+        });
     }
 }

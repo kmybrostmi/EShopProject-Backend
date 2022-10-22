@@ -95,7 +95,7 @@ public class Order : AggregateRoot
     public void ChangeStatus(OrderStatus orderStatus)
     {
         OrderStatus = orderStatus;
-        Lastupdate = DateTime.Now;
+        LastUpdate = DateTime.Now;
     }
 
     public void Checkout(OrderAddress orderAddress)

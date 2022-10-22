@@ -9,7 +9,7 @@ internal class ProductConfiguration : IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)
     {
-        builder.ToTable("Products", "Product");
+        builder.ToTable("Product", "Product");
         builder.HasKey(b => b.Id);
         builder.HasIndex(b => b.Slug).IsUnique();
 

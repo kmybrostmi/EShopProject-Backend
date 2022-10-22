@@ -20,7 +20,7 @@ public class CreateBannerCommandHandler : IBaseCommandHandler<CreateBannerComman
     {
         var imageName = await _fileService.SaveFileAndGenerateName(request.ImageFile,Directories.BannerImages); 
 
-        var banner = new Banner(request.Link,imageName,request.BannerPosition);
+        var banner = new BannerEntity(request.Link,imageName,request.BannerPosition);
 
         await _repository.AddAsync(banner);
         await _repository.Save();
