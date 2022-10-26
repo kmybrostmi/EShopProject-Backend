@@ -6,4 +6,25 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Aggregates\Categories\GetByParentId\" />
+    <Folder Include="Aggregates\Categories\GetList\" />
+    <Folder Include="Aggregates\Comments\" />
+    <Folder Include="Entities\SiteEntities\Banner\" />
+    <Folder Include="Entities\SiteEntities\Slider\" />
+    <Folder Include="Aggregates\Orders\" />
+    <Folder Include="Aggregates\Products\" />
+    <Folder Include="Aggregates\Roles\" />
+    <Folder Include="Aggregates\Sellers\" />
+    <Folder Include="Entities\SiteEntities\" />
+    <Folder Include="Aggregates\Users\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Domain\Common.Domain.csproj" />
+    <ProjectReference Include="..\Common.Query\Common.Query.csproj" />
+    <ProjectReference Include="..\Shop.Domain\Shop.Domain.csproj" />
+    <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
