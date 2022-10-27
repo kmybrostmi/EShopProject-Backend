@@ -1,4 +1,5 @@
 ﻿using Common.Query;
+using Microsoft.EntityFrameworkCore;
 using Shop.Infrastructure;
 using Shop.Query.Aggregates.Categories.DTOs;
 
@@ -12,10 +13,12 @@ internal class GetCategoryByIdQueryHandler : IQueryHandler<GetCategoryByIdQuery,
     {
         _context = context;
     }
-    public Task<CategoryDto> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
+    public async Task<CategoryDto> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var model = await _context.Categories.FirstOrDefaultAsync(f => f.Id == request.CategoryId,cancellationToken);
+        return model.Map();
     }
 }
+
 
  

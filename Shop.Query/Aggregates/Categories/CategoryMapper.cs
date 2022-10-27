@@ -25,6 +25,26 @@ internal static class CategoryMapper
         };
     }
 
+    public static List<CategoryDto> Map(this List<Category> categories)
+    {
+        var model = new List<CategoryDto>();
+
+        categories.ForEach(category =>
+        {
+            model.Add(new CategoryDto()
+            {
+                Title = category.Title,
+                Slug = category.Slug,
+                Id = category.Id,
+                SeoData = category.SeoData,
+                CreateDate = category.CreateDate,
+                Childs = category.Childs.MapChildren()
+            });
+        });
+
+        return model;
+    }
+
     public static List<ChildCategoryDto> MapChildren(this List<Category> children)
     {
         var model = new List<ChildCategoryDto>();

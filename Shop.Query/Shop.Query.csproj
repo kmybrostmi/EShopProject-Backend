@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Aggregates\Categories\GetByParentId\" />
-    <Folder Include="Aggregates\Categories\GetList\" />
     <Folder Include="Aggregates\Comments\" />
     <Folder Include="Entities\SiteEntities\Banner\" />
     <Folder Include="Entities\SiteEntities\Slider\" />
