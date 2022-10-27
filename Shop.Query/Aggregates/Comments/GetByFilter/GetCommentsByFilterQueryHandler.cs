@@ -38,7 +38,7 @@ public class GetCommentsByFilterQueryHandler : IQueryHandler<GetCommentsByFilter
         var model = new CommentFilterResult()
         {
             Data = await result.Skip(skip).Take(@params.Take)
-                .Select(comment => comment.Map())
+                .Select(comment => comment.MapFilterComment())
                 .ToListAsync(cancellationToken),
             FilterParams = @params
         };

@@ -24,4 +24,20 @@ public static class CommentMapper
             Text = comment.Text
         };
     }
+
+    public static CommentDto MapFilterComment(this Comment comment)
+    {
+        if (comment == null)
+            return null;
+        return new CommentDto()
+        {
+            Id = comment.Id,
+            CreateDate = comment.CreateDate,
+            Status = comment.Status,
+            UserId = comment.UserId,
+            ProductId = comment.ProductId,
+            Text = comment.Text,
+
+        };
+    }
 }
