@@ -20,7 +20,7 @@ using Shop.Infrastructure.Persistent.Ef.Entitiess.SiteEntitiess.Banners;
 using Shop.Infrastructure.Persistent.Ef.Entitiess.SiteEntitiess.Sliders;
 
 namespace Shop.Infrastructure;
-internal class InfrastructureBootstrapper
+public class InfrastructureBootstrapper
 {
     public static void Init(IServiceCollection services, string connectionString)
     {
