@@ -18,15 +18,16 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(b => b.Family).IsRequired().HasMaxLength(50);
         builder.Property(b => b.Email).IsRequired().HasMaxLength(100);
         builder.Property(b => b.Password).IsRequired().HasMaxLength(100);
+        builder.Property(b => b.PhoneNumber).IsRequired().HasMaxLength(11);
 
 
-        //Value Object
-        builder.OwnsOne(c => c.PhoneNumber, config =>
-        {
-            config.Property(b => b.Value)
-                .HasColumnName("PhoneNumber")
-                .IsRequired().HasMaxLength(11);
-        });
+        ////Value Object
+        //builder.OwnsOne(c => c.PhoneNumber, config =>
+        //{
+        //    config.Property(b => b.Value)
+        //        .HasColumnName("PhoneNumber")
+        //        .IsRequired().HasMaxLength(11);
+        //});
 
         //One To Many
         builder.OwnsMany(b => b.Addresses, option =>

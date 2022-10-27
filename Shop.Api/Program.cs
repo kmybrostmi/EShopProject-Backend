@@ -1,4 +1,6 @@
 using Common.Application;
+using Common.Application.FileUtil.Interfaces;
+using Common.Application.FileUtil.Services;
 using Shop.Config;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,8 +14,9 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.RegisterShopDependency(connectionString);
 
-
 CommonBootstrapper.Init(builder.Services);
+
+builder.Services.AddTransient<IFileService, FileService>();
 
 var app = builder.Build();
 

@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 namespace Shop.Domain.UserAgg;
 public class User : AggregateRoot
 {
-    public User()
+    private User()
     {
 
     }
-    public User(string name, string family, PhoneNumber phoneNumber, string email, string password, 
+    public User(string name, string family, string phoneNumber, string email, string password, 
         Gender gender, IUserDomainService userDomain)
     {
         Guard(phoneNumber, email, userDomain);
@@ -31,7 +31,7 @@ public class User : AggregateRoot
 
     public string Name { get; private set; }
     public string Family { get; private set; }
-    public PhoneNumber PhoneNumber { get; private set; }
+    public string PhoneNumber { get; private set; }
     public string Email { get; private set; }
     public string Password { get; private set; }
     public string Avatar { get; private set; }
@@ -49,7 +49,7 @@ public class User : AggregateRoot
         Avatar = imageName;
     }
 
-    public void Edit(string name, string family, PhoneNumber phoneNumber, string email, 
+    public void Edit(string name, string family, string phoneNumber, string email, 
         Gender gender, IUserDomainService userDomain)
     {
         Guard(phoneNumber, email, userDomain);
@@ -97,11 +97,11 @@ public class User : AggregateRoot
         Roles.AddRange(roles);
     }
 
-    public static User RegisterUser(PhoneNumber phoneNumber, string password, IUserDomainService userDomain)
+    public static User RegisterUser(string phoneNumber, string password, IUserDomainService userDomain)
     {
         return new User(string.Empty,string.Empty,phoneNumber,null,password,Gender.None,userDomain);
     }
-    public void Guard(PhoneNumber phoneNumber, string email, IUserDomainService userDomain)
+    public void Guard(string phoneNumber, string email, IUserDomainService userDomain)
     {
         if (phoneNumber == null)
         {

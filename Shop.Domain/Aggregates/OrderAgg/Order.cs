@@ -4,7 +4,7 @@ using Shop.Domain.OrderAgg.ValueObjects;
 namespace Shop.Domain.OrderAgg;
 public class Order : AggregateRoot
 {
-    public Order()
+    private Order()
     {
 
     }
