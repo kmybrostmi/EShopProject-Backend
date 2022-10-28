@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Aggregates\Users\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Common.Domain\Common.Domain.csproj" />
     <ProjectReference Include="..\Common.Query\Common.Query.csproj" />
     <ProjectReference Include="..\Shop.Domain\Shop.Domain.csproj" />

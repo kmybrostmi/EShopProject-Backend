@@ -25,6 +25,7 @@ public class User : AggregateRoot
         PhoneNumber = phoneNumber;
         Email = email;
         Password = password;
+        IsActive = true;    
         Gender = gender;
         Avatar = "Avatar.png";
     }
@@ -36,6 +37,7 @@ public class User : AggregateRoot
     public string Password { get; private set; }
     public string Avatar { get; private set; }
     public Gender Gender { get; private set; }
+    public bool IsActive { get; set; }
     public List<UserAddress> Addresses { get; private set; }
     public List<UserRole> Roles { get; private set; }
     public List<UserWallet> Wallets { get; private set; }
