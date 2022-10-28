@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Entities\SiteEntities\Banner\" />
     <Folder Include="Entities\SiteEntities\Slider\" />
-    <Folder Include="Aggregates\Sellers\" />
     <Folder Include="Entities\SiteEntities\" />
     <Folder Include="Aggregates\Users\" />
   </ItemGroup>
