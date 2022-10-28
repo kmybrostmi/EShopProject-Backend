@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\SiteEntities\Banner\" />
-    <Folder Include="Entities\SiteEntities\Slider\" />
-    <Folder Include="Entities\SiteEntities\" />
     <Folder Include="Aggregates\Users\" />
+    <Folder Include="Entities\SiteEntities\Slider\DTOs\" />
+    <Folder Include="Entities\SiteEntities\Slider\GetById\" />
+    <Folder Include="Entities\SiteEntities\Slider\GetList\" />
   </ItemGroup>
 
   <ItemGroup>
