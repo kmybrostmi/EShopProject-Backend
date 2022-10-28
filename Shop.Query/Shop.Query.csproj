@@ -8,9 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Aggregates\Users\" />
-    <Folder Include="Entities\SiteEntities\Slider\DTOs\" />
-    <Folder Include="Entities\SiteEntities\Slider\GetById\" />
-    <Folder Include="Entities\SiteEntities\Slider\GetList\" />
   </ItemGroup>
 
   <ItemGroup>
