@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Shop.Application.Aggregates.Categories.AddChild;
-public class AddChildCategoryCommand:IBaseCommand
+public class AddChildCategoryCommand:IBaseCommand<Guid>
 {
     public AddChildCategoryCommand(Guid parentId, string title, string slug, SeoData seoData)
     {

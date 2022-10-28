@@ -11,6 +11,7 @@ using Shop.Domain.CategoryAgg.Services;
 using Shop.Domain.ProductAgg.Service;
 using Shop.Domain.UserAgg.Services;
 using Shop.Infrastructure;
+using Shop.Presentation.Facade;
 using Shop.Query.Aggregates.Categories.GetById;
 using System;
 using System.Collections.Generic;
@@ -37,5 +38,8 @@ public static class ShopBootstrapper
 
         //FluentValidator
         services.AddValidatorsFromAssembly(typeof(Directories).Assembly);
+
+        //Facade
+        services.InitFacadeDependency();
     }
 }

@@ -62,7 +62,13 @@ public class Category : AggregateRoot
     {
         var deleteCategory = Childs.FirstOrDefault(c => c.Id == categoryId);
         if (deleteCategory != null && parentId != null)
-            Childs.Remove(deleteCategory);            
+        {
+            Childs.Remove(deleteCategory);
+        }
+        else
+        {
+            throw new InvalidDomainDataException();
+        }
     }
 }
 
