@@ -9,16 +9,17 @@ namespace Shop.Presentation.Facade.Aggregates.Categories;
 public interface ICategoryFacade
 {
     //Commands
-    Task<OperationResult<Guid>> AddChild(AddChildCategoryCommand command);
-    Task<OperationResult<Guid>> Create(CreateCategoryCommand command);
-    Task<OperationResult> Remove(Guid categoryId, Guid parentId);
-    Task<OperationResult> Edit(EditCategoryCommand command);
+    Task<OperationResult<Guid>> AddChildCategory(AddChildCategoryCommand command);
+    Task<OperationResult<Guid>> CreateCategory(CreateCategoryCommand command);
+    Task<OperationResult> RemoveCategory(Guid categoryId, Guid parentId);
+    Task<OperationResult> EditCategory(EditCategoryCommand command);
 
     //Queries
     Task<CategoryDto> GetCategoryById(Guid id);
     Task<List<CategoryDto>> GetCategories();
     Task<List<ChildCategoryDto>> GetCategoriesByParentId(Guid parentId);
 }
+
 
 
 

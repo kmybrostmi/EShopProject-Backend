@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Shop.Application.Aggregates.Comments.Create;
-public class CreateCommentCommand:IBaseCommand
+public class CreateCommentCommand:IBaseCommand<Guid>
 {
     public CreateCommentCommand(Guid userId, Guid productId, string text)
     {
