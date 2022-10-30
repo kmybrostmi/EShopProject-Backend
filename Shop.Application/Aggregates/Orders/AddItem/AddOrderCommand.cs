@@ -1,7 +1,7 @@
 ﻿using Common.Application;
 
 namespace Shop.Application.Aggregates.Orders.AddItem;
-public class AddOrderCommand : IBaseCommand
+public class AddOrderCommand : IBaseCommand<Guid>
 {
     public AddOrderCommand(Guid inventoryId, Guid userId, int count)
     {
