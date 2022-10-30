@@ -23,7 +23,7 @@ public interface IOrderFacade
 
 
     //Queries
-    Task<OrderDto> GetOrderById(Guid id);   
+    Task<OrderDto?> GetOrderById(Guid id);   
     Task<OrderFilterResult> GetOrderByFilter(OrderFilterParams filterParams);
     
 }

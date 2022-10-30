@@ -43,7 +43,7 @@ public class OrderFacade : IOrderFacade
         return _mediator.Send(new GetOrdersByFilterQuery(filterParams));
     }
 
-    public Task<OrderDto> GetOrderById(Guid id)
+    public Task<OrderDto?> GetOrderById(Guid id)
     {
         return _mediator.Send(new GetOrderByIdQuery(id));
     }

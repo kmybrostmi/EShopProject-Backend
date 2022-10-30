@@ -17,7 +17,6 @@
     <Folder Include="Aggregates\Users\" />
     <Folder Include="Aggregates\Sellers\" />
     <Folder Include="Aggregates\Roles\" />
-    <Folder Include="Aggregates\Products\" />
   </ItemGroup>
 
 </Project>
