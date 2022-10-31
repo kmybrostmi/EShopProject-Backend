@@ -15,8 +15,6 @@
     <Folder Include="Entities\SiteEntities\Banners\" />
     <Folder Include="Entities\SiteEntities\Sliders\" />
     <Folder Include="Aggregates\Users\" />
-    <Folder Include="Aggregates\Sellers\" />
-    <Folder Include="Aggregates\Roles\" />
   </ItemGroup>
 
 </Project>
