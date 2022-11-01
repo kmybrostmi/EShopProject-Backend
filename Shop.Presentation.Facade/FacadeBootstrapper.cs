@@ -3,6 +3,12 @@ using Shop.Presentation.Facade.Aggregates.Categories;
 using Shop.Presentation.Facade.Aggregates.Comments;
 using Shop.Presentation.Facade.Aggregates.Orders;
 using Shop.Presentation.Facade.Aggregates.Products;
+using Shop.Presentation.Facade.Aggregates.Roles;
+using Shop.Presentation.Facade.Aggregates.Sellers;
+using Shop.Presentation.Facade.Aggregates.Users;
+using Shop.Presentation.Facade.Aggregates.Users.UserAddress;
+using Shop.Presentation.Facade.Entities.SiteEntities.Banners;
+using Shop.Presentation.Facade.Entities.SiteEntities.Sliders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +24,12 @@ public static class FacadeBootstrapper
         services.AddScoped<ICommentFacade, CommentFacade>();
         services.AddScoped<IOrderFacade, OrderFacade>();
         services.AddScoped<IProductFacade, ProductFacade>();
+        services.AddScoped<IRoleFacade, RoleFacade>();
+        services.AddScoped<ISellerFacade, SellerFacade>();
+        services.AddScoped<IUserFacade, UserFacade>();
+        services.AddScoped<IUserAddressFacade, UserAddressFacade>();
+        services.AddScoped<IBannerFacade, BannerFacade>();
+        services.AddScoped<ISliderFacade, SliderFacade>();
     }
 
 }
