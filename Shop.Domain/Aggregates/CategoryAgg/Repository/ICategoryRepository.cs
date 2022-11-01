@@ -9,4 +9,6 @@ using System.Threading.Tasks;
 namespace Shop.Domain.Aggregates.CategoryAgg.Repository;
 public interface ICategoryRepository : IBaseRepository<Category>
 {
+    Task<bool> DeleteCategory(Guid categoryId);
 }
+

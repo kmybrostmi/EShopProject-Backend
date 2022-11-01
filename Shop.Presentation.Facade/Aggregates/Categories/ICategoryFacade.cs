@@ -11,7 +11,7 @@ public interface ICategoryFacade
     //Commands
     Task<OperationResult<Guid>> AddChildCategory(AddChildCategoryCommand command);
     Task<OperationResult<Guid>> CreateCategory(CreateCategoryCommand command);
-    Task<OperationResult> RemoveCategory(Guid categoryId, Guid parentId);
+    Task<OperationResult> RemoveCategory(Guid categoryId);
     Task<OperationResult> EditCategory(EditCategoryCommand command);
 
     //Queries
