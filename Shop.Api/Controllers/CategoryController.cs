@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Shop.Application.Aggregates.Categories.AddChild;
 using Shop.Application.Aggregates.Categories.Create;
 using Shop.Application.Aggregates.Categories.Edit;
 using Shop.Presentation.Facade.Aggregates.Categories;
@@ -49,6 +50,24 @@ public class CategoryController : ControllerBase
             return BadRequest(result.Message);
     }
 
+    [HttpPost("AddChild")]
+    public async Task<IActionResult> AddChildCategory(AddChildCategoryCommand command, Guid parentId)
+    {
+        var parentid = await _categoryFacade.GetCategoriesByParentId(parentId);
+        if(parentid == null)
+        {
+            var child = await _categoryFacade.AddChildCategory(command);
+            if(child.Status == Common.Application.OperationResultStatus.Success)
+            return Ok();
+            else return BadRequest(child.Message);  
+        }
+        var childs = await _categoryFacade.AddChildCategory(command);
+        if (childs.Status == Common.Application.OperationResultStatus.Success)
+            return Ok();
+        else return BadRequest(childs.Message);
+
+    }
+
     [HttpPut]
     public async Task<IActionResult> EditCategory(EditCategoryCommand command)
     {
@@ -69,5 +88,6 @@ public class CategoryController : ControllerBase
             return BadRequest(result.Message);
     }
 }
+
 
 

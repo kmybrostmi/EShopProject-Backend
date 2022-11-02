@@ -16,7 +16,9 @@ public class GetCategoryByParentIdQueryHandler : IQueryHandler<GetCategoryByPare
     }
     public async Task<List<ChildCategoryDto>> Handle(GetCategoryByParentIdQuery request, CancellationToken cancellationToken)
     {
-        var model = await _context.Categories.Where(c => c.ParentId == request.ParentId).ToListAsync(cancellationToken);
+        var model = await _context.Categories
+                                    .Include(c => c.Childs)
+                                    .Where(c => c.ParentId == request.ParentId).ToListAsync(cancellationToken);
         return model.MapChildren();
     }
 }
