@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Shop.Application.Aggregates.Categories.Create;
-public class CreateCategoryCommand : IBaseCommand<Guid>
+public class CreateCategoryCommand : IBaseCommand
 {
     public CreateCategoryCommand(string title, string slug, SeoData seoData)
     {

@@ -13,7 +13,7 @@ namespace Shop.Presentation.Facade.Aggregates.Comments;
 public interface ICommentFacade
 {
     //Commands
-    Task<OperationResult<Guid>> CreateComment(CreateCommentCommand command);
+    Task<OperationResult> CreateComment(CreateCommentCommand command);
     Task<OperationResult> EditComment(EditCommentCommand command);
     Task<OperationResult> ChangeCommentStatus(ChangeCommentStatusCommand command);
 

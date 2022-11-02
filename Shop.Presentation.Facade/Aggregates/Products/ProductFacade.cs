@@ -28,7 +28,7 @@ public class ProductFacade : IProductFacade
        return _mediator.Send(command);
     }
 
-    public Task<OperationResult<Guid>> CreateProduct(CreateProductCommand command)
+    public Task<OperationResult> CreateProduct(CreateProductCommand command)
     {
         return _mediator.Send(command);
     }

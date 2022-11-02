@@ -9,8 +9,8 @@ namespace Shop.Presentation.Facade.Aggregates.Categories;
 public interface ICategoryFacade
 {
     //Commands
-    Task<OperationResult<Guid>> AddChildCategory(AddChildCategoryCommand command);
-    Task<OperationResult<Guid>> CreateCategory(CreateCategoryCommand command);
+    Task<OperationResult> AddChildCategory(AddChildCategoryCommand command);
+    Task<OperationResult> CreateCategory(CreateCategoryCommand command);
     Task<OperationResult> RemoveCategory(Guid categoryId);
     Task<OperationResult> EditCategory(EditCategoryCommand command);
 

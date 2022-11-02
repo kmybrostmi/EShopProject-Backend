@@ -14,7 +14,7 @@ namespace Shop.Presentation.Facade.Aggregates.Products;
 public interface IProductFacade
 {
     //Commands
-    Task<OperationResult<Guid>> CreateProduct(CreateProductCommand command);
+    Task<OperationResult> CreateProduct(CreateProductCommand command);
     Task<OperationResult> EditProduct(EditProductCommand command);
     Task<OperationResult> AddProductImage(AddProductImageCommand command);
     Task<OperationResult> RemoveProductImage(RemoveProductImageCommand command);

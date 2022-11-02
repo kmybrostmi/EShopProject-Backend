@@ -19,12 +19,12 @@ internal class CategoryFacade : ICategoryFacade
     {
         _mediator = mediator;
     }
-    public async Task<OperationResult<Guid>> AddChildCategory(AddChildCategoryCommand command)
+    public async Task<OperationResult> AddChildCategory(AddChildCategoryCommand command)
     {
         return await _mediator.Send(command);
     }
 
-    public async Task<OperationResult<Guid>> CreateCategory(CreateCategoryCommand command)
+    public async Task<OperationResult> CreateCategory(CreateCategoryCommand command)
     {
         return await _mediator.Send(command);
     }
