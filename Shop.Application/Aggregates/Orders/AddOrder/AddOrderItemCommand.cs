@@ -1,9 +1,9 @@
 ﻿using Common.Application;
 
 namespace Shop.Application.Aggregates.Orders.AddItem;
-public class AddOrderCommand : IBaseCommand
+public class AddOrderItemCommand : IBaseCommand
 {
-    public AddOrderCommand(Guid inventoryId, Guid userId, int count)
+    public AddOrderItemCommand(Guid inventoryId, Guid userId, int count)
     {
         InventoryId = inventoryId;
         UserId = userId;

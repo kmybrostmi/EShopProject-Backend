@@ -23,7 +23,7 @@ public class OrderFacade : IOrderFacade
     {
        _mediator = mediator;
     }
-    public Task<OperationResult> AddOrder(AddOrderCommand command)
+    public Task<OperationResult> AddOrder(AddOrderItemCommand command)
     {
         return _mediator.Send(command);
     }

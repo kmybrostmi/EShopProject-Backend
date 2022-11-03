@@ -5,17 +5,17 @@ using Shop.Domain.OrderAgg;
 
 namespace Shop.Application.Aggregates.Orders.AddItem;
 
-public class AddOrderCommandHandler : IBaseCommandHandler<AddOrderCommand>
+public class AddOrderItemCommandHandler : IBaseCommandHandler<AddOrderItemCommand>
 {
     private readonly IOrderRepository _orderRepository;
     private readonly ISellerRepository _sellerRepository;
 
-    public AddOrderCommandHandler(IOrderRepository orderRepository, ISellerRepository sellerRepository)
+    public AddOrderItemCommandHandler(IOrderRepository orderRepository, ISellerRepository sellerRepository)
     {
         _orderRepository = orderRepository;
         _sellerRepository = sellerRepository;
     }
-    public async Task<OperationResult> Handle(AddOrderCommand request, CancellationToken cancellationToken)
+    public async Task<OperationResult> Handle(AddOrderItemCommand request, CancellationToken cancellationToken)
     {
         var inventory = await _sellerRepository.GetInventoryById(request.InventoryId);
         if (inventory == null)
