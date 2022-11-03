@@ -10,8 +10,6 @@ using System.Net;
 
 namespace Shop.Api.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
 public class CategoryController : ApiController
 {
     private readonly ICategoryFacade _categoryFacade;
