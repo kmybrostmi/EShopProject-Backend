@@ -18,49 +18,49 @@ public class OrderController : ApiController
 		_orderFacade = orderFacade;
 	}
 
-	[HttpGet("{orderId}")]
-	public async Task<ApiResult<OrderDto?>> GetOrderById(Guid orderId)
-	{
-		var result = await _orderFacade.GetOrderById(orderId);
-		return QueryResult(result);
-	}
+    [HttpGet("{orderId}")]
+    public async Task<ApiResult<OrderDto?>> GetOrderById(Guid orderId)
+    {
+        var result = await _orderFacade.GetOrderById(orderId);
+        return QueryResult(result);
+    }
 
-	[HttpGet]
-	public async Task<ApiResult<OrderFilterResult>> GetOrderByFilter([FromQuery] OrderFilterParams filterParams)
-	{
-		var result = await _orderFacade.GetOrderByFilter(filterParams);
-		return QueryResult(result);
-	}
+    [HttpGet]
+    public async Task<ApiResult<OrderFilterResult>> GetOrderByFilter([FromQuery] OrderFilterParams filterParams)
+    {
+        var result = await _orderFacade.GetOrderByFilter(filterParams);
+        return QueryResult(result);
+    }
 
-	[HttpPost]
-	public async Task<ApiResult> AddOrderItem(AddOrderItemCommand command)
-	{
-		var result = await _orderFacade.AddOrder(command);
-		return CommandResult(result);	
-	}
+    [HttpPost]
+    public async Task<ApiResult> AddOrderItem(AddOrderItemCommand command)
+    {
+        var result = await _orderFacade.AddOrder(command);
+        return CommandResult(result);
+    }
 
-    [HttpPost("{ChechOut}")]
+    [HttpPost("ChechOut")]
     public async Task<ApiResult> CheckOutOrder(CheckOutOrderCommand command)
     {
         var result = await _orderFacade.CheckOutOrder(command);
         return CommandResult(result);
     }
 
-    [HttpPut("{orderItem/DecreaseCount}")]
+    [HttpPut("orderItem/DecreaseCount")]
     public async Task<ApiResult> DecreaseOrderItemCount(DecreaseOrderItemCountCommand command)
     {
         var result = await _orderFacade.DecreaseOrderItemCount(command);
         return CommandResult(result);
     }
 
-    [HttpPut("{orderItem/IncreaseCount}")]
+    [HttpPut("orderItem/IncreaseCount")]
     public async Task<ApiResult> IncreaseOrderItemCount(IncreaseOrderItemCountCommand command)
     {
         var result = await _orderFacade.IncreaseOrderItemCount(command);
         return CommandResult(result);
     }
 
-    [HttpDelete("{orderItem}")]
+    [HttpDelete("orderItem")]
     public async Task<ApiResult> RemoveOrderItem(RemoveOrderItemCommand command)
     {
         var result = await _orderFacade.RemoveOrder(command);
