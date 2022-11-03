@@ -6,6 +6,7 @@ using Shop.Application.Aggregates.Categories.Create;
 using Shop.Application.Aggregates.Categories.Edit;
 using Shop.Presentation.Facade.Aggregates.Categories;
 using Shop.Query.Aggregates.Categories.DTOs;
+using System.Net;
 
 namespace Shop.Api.Controllers;
 
@@ -24,80 +25,61 @@ public class CategoryController : ApiController
     public async Task<ApiResult<List<CategoryDto>>> GetCategories()
     {
         var result = await _categoryFacade.GetCategories();
-        return new ApiResult<List<CategoryDto>>()
-        {
-            Data = result,
-            MetaData = new MetaData()
-            {
-                AppStatusCode = AppStatusCode.Success,
-                Message = "عملیات با موفقیت انجام  شد"
-            },
-            IsSuccess = true
-        };
+        return QueryResult(result);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<CategoryDto>> GetCategoryById(Guid id)
+    public async Task<ApiResult<CategoryDto>> GetCategoryById(Guid id)
     {
         var result = await _categoryFacade.GetCategoryById(id);
-        return Ok(result);  
+        return QueryResult(result);
     }
 
     [HttpGet("getChild/{parentId}")]
-    public async Task<ActionResult<List<ChildCategoryDto>>> GetCategoryByParentId(Guid parentId)
+    public async Task<ApiResult<List<ChildCategoryDto>>> GetCategoryByParentId(Guid parentId)
     {
         var result = await _categoryFacade.GetCategoriesByParentId(parentId);
-        return Ok(result);
+        return QueryResult(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateCategory(CreateCategoryCommand command)
+    public async Task<ApiResult<Guid>> CreateCategory(CreateCategoryCommand command)
     {
         var result = await _categoryFacade.CreateCategory(command);
-        if(result.Status == Common.Application.OperationResultStatus.Success)
-            return Ok();  
-        else
-            return BadRequest(result.Message);
+        var url = Url.Action("GetCategoryById", "Category", new { id = result.Data }, Request.Scheme);
+        return CommandResult(result, HttpStatusCode.Created, url);
     }
 
     [HttpPost("AddChild")]
-    public async Task<IActionResult> AddChildCategory(AddChildCategoryCommand command, Guid parentId)
+    public async Task<ApiResult<Guid>> AddChildCategory(AddChildCategoryCommand command, Guid parentId)
     {
         var parentid = await _categoryFacade.GetCategoriesByParentId(parentId);
         if(parentid == null)
         {
             var child = await _categoryFacade.AddChildCategory(command);
-            if(child.Status == Common.Application.OperationResultStatus.Success)
-            return Ok();
-            else return BadRequest(child.Message);  
+            var url = Url.Action("GetCategoryById", "Category", new { id = child.Data }, Request.Scheme);
+            return CommandResult(child, HttpStatusCode.Created, url);
         }
         var childs = await _categoryFacade.AddChildCategory(command);
-        if (childs.Status == Common.Application.OperationResultStatus.Success)
-            return Ok();
-        else return BadRequest(childs.Message);
-
+        var urls = Url.Action("GetCategoryById", "Category", new { id = childs.Data }, Request.Scheme);
+        return CommandResult(childs, HttpStatusCode.Created, urls);
     }
 
     [HttpPut]
-    public async Task<IActionResult> EditCategory(EditCategoryCommand command)
+    public async Task<ApiResult> EditCategory(EditCategoryCommand command)
     {
         var result = await _categoryFacade.EditCategory(command);
-        if (result.Status == Common.Application.OperationResultStatus.Success)
-            return Ok();
-        else
-            return BadRequest(result.Message);
+        return CommandResult(result);
     }
 
     [HttpDelete("{categoryId}")]
-    public async Task<IActionResult> RemoveCategory(Guid categoryId)
+    public async Task<ApiResult> RemoveCategory(Guid categoryId)
     {
         var result = await _categoryFacade.RemoveCategory(categoryId);
-        if (result.Status == Common.Application.OperationResultStatus.Success)
-            return Ok();
-        else
-            return BadRequest(result.Message);
+        return CommandResult(result);
     }
 }
+
 
 
 

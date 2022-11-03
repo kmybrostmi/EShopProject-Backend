@@ -7,6 +7,7 @@ public enum AppStatusCode
     BadRequest = 3,
     LogicError = 4,
     UnAuthorize = 5,
+    ServerError = 6,
 }
 
 
