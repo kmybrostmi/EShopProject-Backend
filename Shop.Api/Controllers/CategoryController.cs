@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Common.AspNetCore;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.Aggregates.Categories.AddChild;
 using Shop.Application.Aggregates.Categories.Create;
@@ -10,7 +11,7 @@ namespace Shop.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class CategoryController : ControllerBase
+public class CategoryController : ApiController
 {
     private readonly ICategoryFacade _categoryFacade;
 
@@ -20,10 +21,19 @@ public class CategoryController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<CategoryDto>>> GetCategories()
+    public async Task<ApiResult<List<CategoryDto>>> GetCategories()
     {
-        var result = await _categoryFacade.GetCategories(); 
-        return Ok(result);
+        var result = await _categoryFacade.GetCategories();
+        return new ApiResult<List<CategoryDto>>()
+        {
+            Data = result,
+            MetaData = new MetaData()
+            {
+                AppStatusCode = AppStatusCode.Success,
+                Message = "عملیات با موفقیت انجام  شد"
+            },
+            IsSuccess = true
+        };
     }
 
     [HttpGet("{id}")]
