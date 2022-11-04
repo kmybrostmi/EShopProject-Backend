@@ -2,6 +2,7 @@
 using Shop.Application.Aggregates.Users.AddAddress;
 using Shop.Application.Aggregates.Users.DeleteAddress;
 using Shop.Application.Aggregates.Users.EditAddress;
+using Shop.Query.Aggregates.Users.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,4 +19,9 @@ public interface IUserAddressFacade
 
 
     //Queries
+    Task<UserAddressDto?> GetUserAddressById(Guid userAddressId);  
+    Task<List<UserAddressDto>> GetUserAddressList(Guid userId);
 }
+
+
+

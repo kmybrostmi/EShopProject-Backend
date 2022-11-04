@@ -7,6 +7,7 @@ using Shop.Application.Aggregates.Users.AddAddress;
 using Shop.Application.Aggregates.Users.DeleteAddress;
 using Shop.Application.Aggregates.Users.EditAddress;
 using Shop.Presentation.Facade.Aggregates.Users.UserAddress;
+using Shop.Query.Aggregates.Users.DTOs;
 
 namespace Shop.Api.Controllers;
 public class UserAddressController : ApiController
@@ -18,6 +19,20 @@ public class UserAddressController : ApiController
 	{
 		_addressFacade = addressFacade;
 		_mapper = mapper;
+	}
+
+	[HttpGet("{userAddressId}")]
+	public async Task<ApiResult<UserAddressDto?>> GetUserAddressById(Guid userAddressId)
+	{
+		var result = await _addressFacade.GetUserAddressById(userAddressId);
+		return QueryResult(result);
+	}
+
+	[HttpGet]
+	public async Task<ApiResult<List<UserAddressDto>>> GetUserAddressList()
+	{
+		var result = await _addressFacade.GetUserAddressList(User.GetUserId());
+		return QueryResult(result);
 	}
 
 	[HttpPost]	

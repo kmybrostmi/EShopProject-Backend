@@ -5,7 +5,7 @@ using Shop.Query.Aggregates.Users.DTOs;
 
 namespace Shop.Query.Aggregates.Users.Addresses.GetById;
 
-public class GetUserAddressByIdQueryHandler : IQueryHandler<GetUserAddressByIdQuery, UserAddressDto>
+public class GetUserAddressByIdQueryHandler : IQueryHandler<GetUserAddressByIdQuery, UserAddressDto?>
 {
     private readonly DapperContext _dapperContext;
 
@@ -13,7 +13,7 @@ public class GetUserAddressByIdQueryHandler : IQueryHandler<GetUserAddressByIdQu
     {
         _dapperContext = dapperContext;
     }
-    public async Task<UserAddressDto> Handle(GetUserAddressByIdQuery request, CancellationToken cancellationToken)
+    public async Task<UserAddressDto?> Handle(GetUserAddressByIdQuery request, CancellationToken cancellationToken)
     {
         var sql = $"Select top 1 * from {_dapperContext.UserAddresses} where id=@id";
         using var context = _dapperContext.GetConnection();

@@ -4,7 +4,7 @@ using Shop.Infrastructure;
 using Shop.Query.Aggregates.Users.DTOs;
 
 namespace Shop.Query.Aggregates.Users.Addresses.GetById;
-public class GetUserAddressByIdQuery:IQuery<UserAddressDto>
+public class GetUserAddressByIdQuery:IQuery<UserAddressDto?>
 {
     public GetUserAddressByIdQuery(Guid addressId)
     {
