@@ -15,7 +15,7 @@ public interface IBannerFacade
     //Commands
     Task<OperationResult> CreateBanner(CreateBannerCommand command);
     Task<OperationResult> EditBanner(EditBannerCommand command);
-    Task<OperationResult> RemoveBanner(RemoveBannerCommand command);
+    Task<OperationResult> RemoveBanner(Guid bannerId);
 
 
     //Queries
@@ -24,3 +24,4 @@ public interface IBannerFacade
 
 
 }
+

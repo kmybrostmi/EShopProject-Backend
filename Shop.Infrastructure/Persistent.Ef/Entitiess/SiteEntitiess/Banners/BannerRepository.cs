@@ -13,4 +13,9 @@ internal class BannerRepository : BaseRepository<BannerEntity>, IBannerRepositor
     public BannerRepository(ShopDbContext context) : base(context)
     {
     }
+
+    public void Delete(BannerEntity banner)
+    {
+        Context.Banners.Remove(banner);
+    }
 }

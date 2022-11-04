@@ -8,4 +8,9 @@ internal class SliderRepository : BaseRepository<SliderEntity>, ISliderRepositor
     public SliderRepository(ShopDbContext context) : base(context)
     {
     }
+
+    public void Delete(SliderEntity slider)
+    {
+        Context.Sliders.Remove(slider);
+    }
 }

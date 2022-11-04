@@ -37,8 +37,8 @@ public class BannerFacade : IBannerFacade
         return await _mediator.Send(new GetBannersListQuery());
     }
 
-    public Task<OperationResult> RemoveBanner(RemoveBannerCommand command)
+    public async Task<OperationResult> RemoveBanner(Guid bannerId)
     {
-        throw new NotImplementedException();
+        return await _mediator.Send(new RemoveBannerCommand(bannerId));
     }
 }

@@ -11,13 +11,10 @@ public interface ISliderFacade
     //Commands
     Task<OperationResult> CreateSlider(CreateSliderCommand command);
     Task<OperationResult> EditSlider(EditSliderCommand command);
-    Task<OperationResult> RemoveSlider(RemoveSliderCommand command);
-
+    Task<OperationResult> RemoveSlider(Guid sliderId);
 
     //Queries
     Task<SliderDto?> GetSliderById(Guid id);
     Task<List<SliderDto>> GetSlidersList();
-
-
 }
 

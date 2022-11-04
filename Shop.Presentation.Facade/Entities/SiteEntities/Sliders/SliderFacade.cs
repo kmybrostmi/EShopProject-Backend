@@ -41,9 +41,9 @@ public class SliderFacade : ISliderFacade
         return await _mediator.Send(new GetSlidersListQuery());
     }
 
-    public Task<OperationResult> RemoveSlider(RemoveSliderCommand command)
+    public async Task<OperationResult> RemoveSlider(Guid sliderId)
     {
-        throw new NotImplementedException();
+        return await _mediator.Send(new RemoveSliderCommand(sliderId));
     }
 }
 
