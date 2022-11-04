@@ -20,7 +20,7 @@ public class EditUserAddressCommand:IBaseCommand
     }
 
     public Guid AddressId { get; internal set; }
-    public Guid UserId { get; internal set; }
+    public Guid UserId { get; set; }
     public string Shire { get; private set; }
     public string City { get; private set; }
     public string PostalCode { get; private set; }
