@@ -3,6 +3,7 @@ using Common.Application.FileUtil.Interfaces;
 using Common.Application.FileUtil.Services;
 using Common.AspNetCore.Middlewares;
 using Shop.Api.Infrastructure;
+using Shop.Api.Infrastructure.JwtUtil;
 using Shop.Config;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.RegisterApiDependency();
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.RegisterShopDependency(connectionString);
