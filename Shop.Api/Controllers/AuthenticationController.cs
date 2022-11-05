@@ -63,7 +63,8 @@ public class AuthenticationController : ApiController
         };
     }
 
-    [HttpPost("{Register}")]
+    //[HttpPost("{Register}")]
+    [HttpPost]
     public async Task<ApiResult> Register(RegisterViewModel registerViewModel)
     {
         var command = new RegisterUserCommand(registerViewModel.PhoneNumber, registerViewModel.Password);
