@@ -1,5 +1,6 @@
 ﻿using Common.Domain;
 using Common.Domain.ValueObjects;
+using Shop.Domain.Aggregates.UserAgg;
 using Shop.Domain.OrderAgg;
 using Shop.Domain.UserAgg.Enums;
 using Shop.Domain.UserAgg.Services;
@@ -28,6 +29,10 @@ public class User : AggregateRoot
         IsActive = true;    
         Gender = gender;
         Avatar = "Avatar.png";
+        Roles = new List<UserRole>();
+        Wallets = new List<UserWallet>();
+        Addresses = new List<UserAddress>();
+        UserTokens = new List<UserToken>();
     }
 
     public string Name { get; private set; }
@@ -38,9 +43,10 @@ public class User : AggregateRoot
     public string Avatar { get; private set; }
     public Gender Gender { get; private set; }
     public bool IsActive { get; set; }
-    public List<UserAddress> Addresses { get; private set; }
-    public List<UserRole> Roles { get; private set; }
-    public List<UserWallet> Wallets { get; private set; }
+    public List<UserAddress> Addresses { get;  }
+    public List<UserRole> Roles { get;  }
+    public List<UserWallet> Wallets { get;  }
+    public List<UserToken> UserTokens { get;  }
 
 
     public void SetAvatar(string imageName)
@@ -50,6 +56,19 @@ public class User : AggregateRoot
 
         Avatar = imageName;
     }
+
+    public void AddToken(string hashJwtToken, string hashRefreshToken, DateTime jwtTokenExpireDate,
+        DateTime refreshTokenExpreDate, string device)
+    {
+        var activeTokenCount = UserTokens.Count(c=>c.RefreshTokenExpreDate > DateTime.Now);
+        if (activeTokenCount == 3)
+            throw new InvalidDomainDataException("امکان استفاده بیشتر از 3 دستگاه بصورت همزمان وجود ندارد");
+
+        var token = new UserToken(hashJwtToken, hashRefreshToken, jwtTokenExpireDate, refreshTokenExpreDate, device);
+        token.UserId = Id;
+        UserTokens.Add(token);  
+    }
+
 
     public void Edit(string name, string family, string phoneNumber, string email, 
         Gender gender, IUserDomainService userDomain)
@@ -124,4 +143,7 @@ public class User : AggregateRoot
                 throw new InvalidDomainDataException("ایمیل تکراری است");
     }
 }
+
+
+
 

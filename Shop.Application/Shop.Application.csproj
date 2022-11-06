@@ -10,7 +10,6 @@
     <Folder Include="Aggregates\Comments\Remove\" />
     <Folder Include="Aggregates\Orders\ChangeCoutItem\" />
     <Folder Include="Aggregates\Orders\ChangeStatus\" />
-    <Folder Include="Aggregates\Users\AddToken\" />
     <Folder Include="Aggregates\Users\ChangePassword\" />
     <Folder Include="Aggregates\Users\SetaActiveAddress\" />
     <Folder Include="Aggregates\Users\RemoveToken\" />

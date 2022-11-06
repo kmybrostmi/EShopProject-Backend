@@ -1,4 +1,5 @@
 ﻿using Common.Application;
+using Shop.Application.Aggregates.Users.AddToken;
 using Shop.Application.Aggregates.Users.ChargeWallet;
 using Shop.Application.Aggregates.Users.Create;
 using Shop.Application.Aggregates.Users.Edit;
@@ -13,6 +14,7 @@ public interface IUserFacade
     Task<OperationResult> EditUser(EditUserCommand command);
     Task<OperationResult> RegisterUser(RegisterUserCommand command);
     Task<OperationResult> ChargeUserWallet(ChargeUserWalletCommand command);
+    Task<OperationResult> AddUserToken(AddUserTokenCommand command);
 
 
     //Queries

@@ -82,6 +82,15 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
             option.Property(b => b.Description).IsRequired().HasMaxLength(1000);
         });
 
+        //One To Many
+        builder.OwnsMany(b => b.UserTokens, option =>
+        {
+            option.ToTable("Tokens", "User");
+            option.HasKey(b => b.Id);
+            option.Property(b => b.HashJwtToken).IsRequired().HasMaxLength(250);
+            option.Property(b => b.HashRefreshToken).IsRequired().HasMaxLength(250);
+            option.Property(b => b.Device).IsRequired().HasMaxLength(100);
+        });
     }
 }
 
