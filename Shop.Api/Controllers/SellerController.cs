@@ -18,12 +18,12 @@ public class SellerController : ApiController
 		_sellerFacade = sellerFacade;
 	}
 
-	[HttpGet("{sellerId}")]
-	public async Task<ApiResult<SellerDto?>> GetSellerById(Guid sellerId)
-	{
-		var result = await _sellerFacade.GetSellerById(sellerId);
-		return QueryResult(result);
-	}
+	//[HttpGet("{sellerId}")]
+	//public async Task<ApiResult<SellerDto?>> GetSellerById(Guid sellerId)
+	//{
+	//	var result = await _sellerFacade.GetSellerById(sellerId);
+	//	return QueryResult(result);
+	//}
 
 	[HttpGet]
 	public async Task<ApiResult<SellerFilterResult>> GetSellerByFilter([FromQuery] SellerFilterParams filterParams)
@@ -39,12 +39,12 @@ public class SellerController : ApiController
 		return CommandResult(result);
 	}
 
-	[HttpPost("Inventory")]
-	public async Task<ApiResult> AddSellerInventory(AddSellerInventoryCommand command)
-	{
-		var result = await _sellerFacade.AddSellerInventory(command);
-		return CommandResult(result);
-	}
+	//[HttpPost("Inventory")]
+	//public async Task<ApiResult> AddSellerInventory(AddSellerInventoryCommand command)
+	//{
+	//	var result = await _sellerFacade.AddSellerInventory(command);
+	//	return CommandResult(result);
+	//}
 
 	[HttpPut] 
 	public async Task<ApiResult> EditSeller(EditSellerCommand command)
@@ -53,12 +53,12 @@ public class SellerController : ApiController
 		return CommandResult(result);
 	}
 
-	[HttpPut("Inventory")]
+	//[HttpPut("Inventory")]
 
-    public async Task<ApiResult> EditSellerInventory(EditSellerInventoryCommand command)
-	{
-		var result = await _sellerFacade.EditSellerInventory(command);
-		return CommandResult(result);
-	}
+ //   public async Task<ApiResult> EditSellerInventory(EditSellerInventoryCommand command)
+	//{
+	//	var result = await _sellerFacade.EditSellerInventory(command);
+	//	return CommandResult(result);
+	//}
 }
 

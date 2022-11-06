@@ -101,7 +101,7 @@ public class User : AggregateRoot
 
     public static User RegisterUser(string phoneNumber, string password, IUserDomainService userDomain)
     {
-        return new User(string.Empty,string.Empty,phoneNumber,null,password,Gender.None,userDomain);
+        return new User(string.Empty, string.Empty, phoneNumber,null, password, Gender.Male, userDomain);
     }
     public void Guard(string phoneNumber, string email, IUserDomainService userDomain)
     {
@@ -118,7 +118,8 @@ public class User : AggregateRoot
             if (userDomain.IsPhoneNumberExist(phoneNumber))
                 throw new InvalidDomainDataException("شماره موبایل تکراری است");
 
-        if (email != Email)
+        //if(!string.IsNullOrWhiteSpace(email))   
+         if (email != Email)
             if (userDomain.IsEmailExist(email))
                 throw new InvalidDomainDataException("ایمیل تکراری است");
     }
