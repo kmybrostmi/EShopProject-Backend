@@ -20,7 +20,7 @@ internal class RegisterUserCommandHandler : IBaseCommandHandler<RegisterUserComm
     {
         var register = User.RegisterUser(request.PhoneNumber, Sha256Hasher.Hash(request.Password), _domainService);
 
-        await _repository.AddAsync(register);
+        _repository.Add(register);
         await _repository.Save();
         return OperationResult.Success();
     }
