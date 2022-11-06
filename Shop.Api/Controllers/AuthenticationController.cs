@@ -59,7 +59,7 @@ public class AuthenticationController : ApiController
 
         var loginResult = await AddTokenAndGenerateJwt(user);
 
-        return CommandResult(loginResult)
+        return CommandResult(loginResult);
 
         //return new ApiResult<LoginResultDto>()
         //{
