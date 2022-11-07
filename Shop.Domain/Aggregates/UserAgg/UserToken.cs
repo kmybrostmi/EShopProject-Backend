@@ -4,10 +4,9 @@ using Shop.Domain.OrderAgg;
 namespace Shop.Domain.Aggregates.UserAgg;
 public class UserToken:BaseEntity
 {
-    public UserToken(Guid userId, string hashJwtToken, string hashRefreshToken, DateTime jwtTokenExpireDate, 
+    public UserToken(string hashJwtToken, string hashRefreshToken, DateTime jwtTokenExpireDate, 
         DateTime refreshTokenExpreDate, string device)
     {
-        UserId = userId;
         HashJwtToken = hashJwtToken;
         HashRefreshToken = hashRefreshToken;
         JwtTokenExpireDate = jwtTokenExpireDate;
@@ -30,12 +29,10 @@ public class UserToken:BaseEntity
         NullOrEmptyDomainDataException.CheckString(HashRefreshToken, nameof(HashRefreshToken));
 
         if (JwtTokenExpireDate < DateTime.Now)
-            throw new InvalidDomainDataException();
+            throw new InvalidDomainDataException("Invalid Token ExpireDate");
 
         if(JwtTokenExpireDate > RefreshTokenExpreDate)
-            throw new InvalidDomainDataException();
-
-
+            throw new InvalidDomainDataException("Invalid RefreshToken ExpireDate");
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using Common.Application;
 using MediatR;
+using Shop.Application.Aggregates.Users.AddToken;
 using Shop.Application.Aggregates.Users.ChargeWallet;
 using Shop.Application.Aggregates.Users.Create;
 using Shop.Application.Aggregates.Users.Edit;
@@ -18,6 +19,12 @@ public class UserFacade : IUserFacade
     {
        _mediator = mediator;
     }
+
+    public async Task<OperationResult> AddUserToken(AddUserTokenCommand command)
+    {
+        return await _mediator.Send(command);
+    }
+
     public async Task<OperationResult> ChargeUserWallet(ChargeUserWalletCommand command)
     {
         return await _mediator.Send(command);
