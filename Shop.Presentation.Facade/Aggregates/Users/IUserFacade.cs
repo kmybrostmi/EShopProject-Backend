@@ -20,7 +20,12 @@ public interface IUserFacade
     //Queries
     Task<UserDto?> GetUserById(Guid id); 
     Task<UserDto?> GetUserByPhoneNumber(string phoneNumber); 
-    Task<UserFilterResult> GetUserByFilter(UserFilterParams filterParams); 
+    Task<UserFilterResult> GetUserByFilter(UserFilterParams filterParams);
+    Task<UserTokenDto?> GetUserTokenByJwtToken(string jwtToken);
+    Task<UserTokenDto?> GetUserTokenByRefreshToken(string refreshToken);
 
 }
+
+
+
 

@@ -1,4 +1,5 @@
 ﻿using Common.Application;
+using Common.Application.SecurityUtil;
 using MediatR;
 using Shop.Application.Aggregates.Users.AddToken;
 using Shop.Application.Aggregates.Users.ChargeWallet;
@@ -9,6 +10,9 @@ using Shop.Query.Aggregates.Users.DTOs;
 using Shop.Query.Aggregates.Users.GetByFilter;
 using Shop.Query.Aggregates.Users.GetById;
 using Shop.Query.Aggregates.Users.GetByPhoneNumber;
+using Shop.Query.Aggregates.Users.UserToken.GetByJwtToken;
+using Shop.Query.Aggregates.Users.UserToken.GetByRefreshToken;
+using System.Runtime.Intrinsics.Arm;
 
 namespace Shop.Presentation.Facade.Aggregates.Users;
 public class UserFacade : IUserFacade
@@ -53,6 +57,18 @@ public class UserFacade : IUserFacade
     public async Task<UserDto?> GetUserByPhoneNumber(string phoneNumber)
     {
         return await _mediator.Send(new GetUserByPhoneNumberQuery(phoneNumber));
+    }
+
+    public async Task<UserTokenDto?> GetUserTokenByJwtToken(string jwtToken)
+    {
+        var hashJwtToken = Sha256Hasher.Hash(jwtToken);
+        return await _mediator.Send(new GetUserTokenByJwtTokenQuery(hashJwtToken));
+    }
+
+    public async Task<UserTokenDto?> GetUserTokenByRefreshToken(string refreshToken)
+    {
+        var hashRefreshToken = Sha256Hasher.Hash(refreshToken);
+        return await _mediator.Send(new GetUserTokenByRefreshToken(hashRefreshToken));
     }
 
     public async Task<OperationResult> RegisterUser(RegisterUserCommand command)

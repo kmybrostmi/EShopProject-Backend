@@ -69,14 +69,37 @@ public class AuthenticationController : ApiController
         //};
     }
 
-    //[HttpPost("{Register}")]
-    [HttpPost]
+    [HttpPost("{register}")]
     public async Task<ApiResult> Register(RegisterViewModel registerViewModel)
     {
         var command = new RegisterUserCommand(registerViewModel.PhoneNumber, registerViewModel.Password);
         var result = await _userFacade.RegisterUser(command);
         return CommandResult(result);
     }
+
+    [HttpPost("{RefreshToken}")]
+    public async Task<ApiResult> RefreshToken(string refreshToken)
+    {
+        var result = await _userFacade.GetUserTokenByRefreshToken(refreshToken);
+        if (result == null)
+            return CommandResult(OperationResult.NotFound());
+
+        if(result.RefreshTokenExpreDate > DateTime.Now)
+        {
+            return CommandResult(OperationResult.Error("توکن منقضی نشده است"));
+        }
+
+        if (result.RefreshTokenExpreDate < DateTime.Now)
+        {
+            return CommandResult(OperationResult.Error("زمان اعتبار رفرش توکن به پایان رسیده است"));
+        }
+
+    }
+
+
+
+
+ 
 
     //private async Task<LoginResultDto?> AddTokenAndGenerateJwt(UserDto user)
     //{
