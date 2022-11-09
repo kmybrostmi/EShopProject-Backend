@@ -6,6 +6,7 @@ using Shop.Application.Aggregates.Users.ChargeWallet;
 using Shop.Application.Aggregates.Users.Create;
 using Shop.Application.Aggregates.Users.Edit;
 using Shop.Application.Aggregates.Users.Register;
+using Shop.Application.Aggregates.Users.RemoveToken;
 using Shop.Query.Aggregates.Users.DTOs;
 using Shop.Query.Aggregates.Users.GetByFilter;
 using Shop.Query.Aggregates.Users.GetById;
@@ -72,6 +73,11 @@ public class UserFacade : IUserFacade
     }
 
     public async Task<OperationResult> RegisterUser(RegisterUserCommand command)
+    {
+        return await _mediator.Send(command);
+    }
+
+    public async Task<OperationResult> RemoveUserToken(RemoveUserTokenCommand command)
     {
         return await _mediator.Send(command);
     }

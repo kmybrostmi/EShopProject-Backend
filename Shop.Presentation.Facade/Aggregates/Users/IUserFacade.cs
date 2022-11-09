@@ -4,6 +4,7 @@ using Shop.Application.Aggregates.Users.ChargeWallet;
 using Shop.Application.Aggregates.Users.Create;
 using Shop.Application.Aggregates.Users.Edit;
 using Shop.Application.Aggregates.Users.Register;
+using Shop.Application.Aggregates.Users.RemoveToken;
 using Shop.Query.Aggregates.Users.DTOs;
 
 namespace Shop.Presentation.Facade.Aggregates.Users;
@@ -15,6 +16,7 @@ public interface IUserFacade
     Task<OperationResult> RegisterUser(RegisterUserCommand command);
     Task<OperationResult> ChargeUserWallet(ChargeUserWalletCommand command);
     Task<OperationResult> AddUserToken(AddUserTokenCommand command);
+    Task<OperationResult> RemoveUserToken(RemoveUserTokenCommand command);
 
 
     //Queries

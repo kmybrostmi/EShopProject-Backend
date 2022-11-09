@@ -17,7 +17,7 @@ public class User : AggregateRoot
     {
 
     }
-    public User(string name, string family, string phoneNumber, string email, string password, 
+    public User(string name, string family, string phoneNumber, string email, string password,
         Gender gender, IUserDomainService userDomain)
     {
         Guard(phoneNumber, email, userDomain);
@@ -26,7 +26,7 @@ public class User : AggregateRoot
         PhoneNumber = phoneNumber;
         Email = email;
         Password = password;
-        IsActive = true;    
+        IsActive = true;
         Gender = gender;
         Avatar = "Avatar.png";
         Roles = new List<UserRole>();
@@ -43,10 +43,10 @@ public class User : AggregateRoot
     public string Avatar { get; private set; }
     public Gender Gender { get; private set; }
     public bool IsActive { get; set; }
-    public List<UserAddress> Addresses { get;  }
-    public List<UserRole> Roles { get;  }
-    public List<UserWallet> Wallets { get;  }
-    public List<UserToken> UserTokens { get;  }
+    public List<UserAddress> Addresses { get; }
+    public List<UserRole> Roles { get; }
+    public List<UserWallet> Wallets { get; }
+    public List<UserToken> UserTokens { get; }
 
 
     public void SetAvatar(string imageName)
@@ -60,17 +60,24 @@ public class User : AggregateRoot
     public void AddToken(string hashJwtToken, string hashRefreshToken, DateTime jwtTokenExpireDate,
         DateTime refreshTokenExpreDate, string device)
     {
-        var activeTokenCount = UserTokens.Count(c=>c.RefreshTokenExpreDate > DateTime.Now);
+        var activeTokenCount = UserTokens.Count(c => c.RefreshTokenExpreDate > DateTime.Now);
         if (activeTokenCount == 3)
             throw new InvalidDomainDataException("امکان استفاده بیشتر از 3 دستگاه بصورت همزمان وجود ندارد");
 
         var token = new UserToken(hashJwtToken, hashRefreshToken, jwtTokenExpireDate, refreshTokenExpreDate, device);
         token.UserId = Id;
-        UserTokens.Add(token);  
+        UserTokens.Add(token);
     }
 
+    public void RemoveToken(Guid tokenId)
+    {
+        var token = UserTokens.FirstOrDefault(c => c.Id == tokenId);
+        if (token == null)
+            throw new InvalidDomainDataException("Invalid Token Id");
+        UserTokens.Remove(token);
+    }
 
-    public void Edit(string name, string family, string phoneNumber, string email, 
+    public void Edit(string name, string family, string phoneNumber, string email,
         Gender gender, IUserDomainService userDomain)
     {
         Guard(phoneNumber, email, userDomain);
@@ -120,7 +127,7 @@ public class User : AggregateRoot
 
     public static User RegisterUser(string phoneNumber, string password, IUserDomainService userDomain)
     {
-        return new User(string.Empty, string.Empty, phoneNumber,null, password, Gender.Male, userDomain);
+        return new User(string.Empty, string.Empty, phoneNumber, null, password, Gender.Male, userDomain);
     }
     public void Guard(string phoneNumber, string email, IUserDomainService userDomain)
     {
@@ -138,7 +145,7 @@ public class User : AggregateRoot
                 throw new InvalidDomainDataException("شماره موبایل تکراری است");
 
         //if(!string.IsNullOrWhiteSpace(email))   
-         if (email != Email)
+        if (email != Email)
             if (userDomain.IsEmailExist(email))
                 throw new InvalidDomainDataException("ایمیل تکراری است");
     }

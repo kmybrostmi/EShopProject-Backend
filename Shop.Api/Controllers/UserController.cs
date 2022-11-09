@@ -32,12 +32,12 @@ public class UserController : ApiController
     //	return QueryResult(result);
     //}
 
-    //[HttpGet]
-    //public async Task<ApiResult<UserFilterResult>> GetUserByFilter([FromQuery] UserFilterParams filterParams)
-    //{
-    //    var result = await _userFacade.GetUserByFilter(filterParams);
-    //    return QueryResult(result);
-    //}
+    [HttpGet]
+    public async Task<ApiResult<UserFilterResult>> GetUserByFilter([FromQuery] UserFilterParams filterParams)
+    {
+        var result = await _userFacade.GetUserByFilter(filterParams);
+        return QueryResult(result);
+    }
 
     [HttpPost]
     public async Task<ApiResult> CreateUser(CreateUserCommand command)
