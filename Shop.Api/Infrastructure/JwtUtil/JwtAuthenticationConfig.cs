@@ -26,6 +26,36 @@ public static class JwtAuthenticationConfig
                 ValidateAudience = true
             };
             option.SaveToken = true;
+
+            option.Events = new JwtBearerEvents()
+            {
+                // OnChallenge = context =>
+                // {
+                //     return Task.CompletedTask;
+                // },
+                // OnMessageReceived = context =>
+                // {
+                //     return Task.CompletedTask;
+                // },
+                // OnTokenValidated = context =>
+                // {
+                //     return Task.CompletedTask;
+                // },
+                // OnAuthenticationFailed = context =>
+                // {
+                //     return Task.CompletedTask;
+                // },
+                // OnForbidden = context =>
+                //{
+                //    return Task.CompletedTask;
+                //}
+                OnTokenValidated = async context =>
+                {
+                    var customValidate = context.HttpContext.RequestServices
+                        .GetRequiredService<CustomJwtValidation>();
+                    await customValidate.Validate(context);
+                }
+            };
         });
     }
 }
