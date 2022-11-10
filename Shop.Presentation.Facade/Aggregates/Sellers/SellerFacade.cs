@@ -7,6 +7,7 @@ using Shop.Application.Aggregates.Sellers.EditInventory;
 using Shop.Query.Aggregates.Sellers.DTOs;
 using Shop.Query.Aggregates.Sellers.GetByFilter;
 using Shop.Query.Aggregates.Sellers.GetById;
+using Shop.Query.Aggregates.Sellers.GetByUserId;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,5 +51,10 @@ public class SellerFacade : ISellerFacade
     public async Task<SellerDto?> GetSellerById(Guid id)
     {
         return await _mediator.Send(new GetSellerByIdQuery(id));
+    }
+
+    public async Task<SellerDto?> GetSellerByUserId(Guid userId)
+    {
+        return await _mediator.Send(new GetSellerByUserIdQuery(userId));    
     }
 }
