@@ -54,6 +54,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("EShopApi");
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseApiCustomExceptionHandler();

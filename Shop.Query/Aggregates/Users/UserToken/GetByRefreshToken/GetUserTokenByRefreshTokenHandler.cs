@@ -17,6 +17,6 @@ public class GetUserTokenByRefreshTokenHandler : IQueryHandler<GetUserTokenByRef
     {
         using var connection = _dapperContext.GetConnection();
         var sql = $"SELECT TOP(1) * FROM {_dapperContext.UserToken} WHERE HashRefreshToken=@hashRefreshToken";
-        return await connection.QueryFirstOrDefaultAsync(sql, new { hashRefreshToken = request.HashRefreshToken });
+        return await connection.QueryFirstOrDefaultAsync<UserTokenDto>(sql, new { hashRefreshToken = request.HashRefreshToken });
     }
 }
